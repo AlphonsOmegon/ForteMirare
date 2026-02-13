@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
-import { Entity1 } from "./Entity1"
 
 @Entity()
 export class Entity2 {
@@ -9,6 +8,6 @@ export class Entity2 {
   @Column()
   name!: string
 
-  @ManyToOne(() => Entity1, e1 => e1.entity2s)
-  entity1!: Entity1
+  @ManyToOne("Entity1", "entity2s")
+  entity1!: any
 }

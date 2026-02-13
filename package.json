@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "migration:generate": "cross-env TS_NODE_PROJECT=tsconfig.typeorm.json typeorm-ts-node-commonjs migration:generate -d src/lib/data-source.ts",
+    "migration:run": "cross-env TS_NODE_PROJECT=tsconfig.typeorm.json typeorm-ts-node-commonjs migration:run -d src/lib/data-source.ts",
+    "migration:revert": "cross-env TS_NODE_PROJECT=tsconfig.typeorm.json typeorm-ts-node-commonjs migration:revert -d src/lib/data-source.ts",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -28,8 +30,10 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2"
   }
 }
