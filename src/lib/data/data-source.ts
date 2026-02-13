@@ -1,8 +1,8 @@
 import "reflect-metadata"
 import { config } from "dotenv"
 import { DataSource } from "typeorm"
-import { Entity1 } from "../entities/Entity1"
-import { Entity2 } from "../entities/Entity2"
+import { Entity1 } from "../../entities/Entity1"
+import { Entity2 } from "../../entities/Entity2"
 
 config()
 
