@@ -41,3 +41,6 @@ coverage/
 # Misc
 .cache/
 *.tsbuildinfo
+/src/generated/prisma
+
+/src/generated/prisma
