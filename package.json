@@ -1,0 +1,18 @@
+{
+  "name": "fortemirare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd Server && npm run dev\" \"cd Client && npm run dev\"",
+    "dev:server": "cd Server && npm run dev",
+    "dev:client": "cd Client && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
