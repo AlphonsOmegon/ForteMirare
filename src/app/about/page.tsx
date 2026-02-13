@@ -1,13 +1,12 @@
 import { getDB } from "@/lib/db";
 import { Entity1 } from "@/entities/Entity1";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 
 export default async function EntitiesPage() {
   const db = await getDB();
   const entities = await db.getRepository(Entity1).find();
 
   return (
-    <div>
+    <div>dawawawawawawawawawawawawaw
       <h1>Entities</h1>
       <ul>
         {entities.map(entity => (

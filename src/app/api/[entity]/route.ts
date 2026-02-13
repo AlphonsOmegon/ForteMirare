@@ -1,6 +1,6 @@
+/*
 import { getDB } from "@/lib/db";
 
-/*
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ entity: string }> }
