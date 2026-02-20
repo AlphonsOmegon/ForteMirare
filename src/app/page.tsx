@@ -40,7 +40,7 @@ const EntitiesPage: React.FC = () => {
             </p>
           </div>
         </section>
-        <section className="secondarySection portfolioSection">
+        <section id="portfolio" className="secondarySection portfolioSection">
           <div className="title">
             <h2>
               Portfolio
@@ -51,7 +51,7 @@ const EntitiesPage: React.FC = () => {
 
           </div>
         </section>
-        <section className="secondarySection aboutSection">
+        <section id="about" className="secondarySection aboutSection">
           <div className="title">
             <h2>
               About me
@@ -62,7 +62,7 @@ const EntitiesPage: React.FC = () => {
 
           </div>
         </section>
-        <section className="secondarySection productsSection">
+        <section id="products" className="secondarySection productsSection">
           <div className="title">
             <h2>
               Products
@@ -73,7 +73,7 @@ const EntitiesPage: React.FC = () => {
 
           </div>
         </section>
-        <section className="secondarySection contactSection">
+        <section id="contact" className="secondarySection contactSection">
           <div className="title">
             <h2>
               Contact
