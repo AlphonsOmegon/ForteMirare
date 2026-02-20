@@ -1,7 +1,8 @@
 import { getDB } from "@/lib/data/db";
-import { Entity1 } from "@/entities/Entity1"
+import { Entity1 } from "@/entities/Entity1";
+import React from "react";
 
-export default async function EntitiesPage() {
+const EntitiesPage = async () => {
   const db = await getDB();
   const entities = await db.getRepository(Entity1).find();
 
@@ -17,7 +18,6 @@ export default async function EntitiesPage() {
         ))}
       </div>
 
-      
       <iframe 
         width="560" 
         height="315" 
@@ -30,4 +30,6 @@ export default async function EntitiesPage() {
       />
     </div>
   );
-}
+};
+
+export default EntitiesPage;

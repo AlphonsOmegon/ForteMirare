@@ -1,0 +1,67 @@
+
+.mainPageContainer {
+    width: 100%;
+
+    background-color: #141414;
+
+    .introSection {
+        justify-content: center;
+        height: 100vh;
+        .title {
+            height: 20%;
+        }
+        
+        .mainMenu {
+            height: 40%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            nav {
+                height: 6vmin;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                
+                .leftNavbar, .rightNavbar {
+                    width: 40%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    
+                    Button {
+                        width: 30vmin;
+                        font-size: 3vmin;
+                        letter-spacing: 1vmin;
+                        
+                        font-weight: lighter;
+                    }
+                }
+
+                .centerNavbar {
+                    width: 20%;
+                }
+            }
+        }
+
+        .introAnnotation {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            p {
+                font-size: 1.5vmin;
+                text-align: center;
+                margin: 0 15vmin;
+            }
+        }
+    }
+
+    .portfolioSection {
+        .portfolio {
+        }
+    }
+    
+}

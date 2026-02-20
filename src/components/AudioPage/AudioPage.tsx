@@ -1,41 +1,52 @@
 'use client';
 
+import { audioManager } from '@/lib/audio/audioManager';
 import { useEffect, useRef, useState } from 'react';
-import { AudioManager } from '@/lib/audio/AudioManager';
-import { Button, Slider, Stack, Text } from '@mantine/core';
+import React from 'react';
 
-export default function AudioPage() {
-  const audioManager = useRef<AudioManager | null>(null);
-  const [filterValue, setFilterValue] = useState(20000);
+interface AudioPageProps {
+  play?: boolean;
+}
+
+const AudioPage: React.FC<AudioPageProps> = ({ play }) => {
+  const initialized = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   
   useEffect(() => {
-    audioManager.current = new AudioManager();
-    audioManager.current.initialize().then(() => {
-      audioManager.current!.startBeat();
-      audioManager.current!.startVital();
+    if (!play || initialized.current || false) return;
+    
+    audioManager.initialize().then(() => {
+      initialized.current = true;
+      audioManager.playMusic('mainTheme');
+      setIsPlaying(true);
     });
     
-    return () => audioManager.current?.stop();
-  }, []);
+    return () => {
+      if (initialized.current) {
+        audioManager.cleanup();
+        initialized.current = false;
+      }
+    };
+  }, [play]);
   
-  return (
-    <Stack p="xl">
-      <Button onClick={() => audioManager.current?.playClick()}>
-        Play Click
-      </Button>
-      
-      <Stack gap="xs" maw={400}>
-        <Text>Filter Vital ({filterValue}Hz)</Text>
-        <Slider
-          min={20}
-          max={20000}
-          value={filterValue}
-          onChange={(value) => {
-            setFilterValue(value);
-            audioManager.current?.setVitalFilter(value);
-          }}
-        />
-      </Stack>
-    </Stack>
-  );
-}
+  const handlePause = () => {
+    audioManager.pauseMusic();
+    setIsPaused(true);
+  };
+  
+  const handleResume = () => {
+    audioManager.resumeMusic();
+    setIsPaused(false);
+  };
+  
+  const handleStop = () => {
+    audioManager.stopMusic();
+    setIsPlaying(false);
+    setIsPaused(false);
+  };
+  
+  return null;
+};
+
+export default AudioPage;
