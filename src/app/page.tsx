@@ -1,12 +1,17 @@
 'use client';
 
-import AudioPage from "@/components/AudioPage/AudioPage";
+import AboutSection from "@/components/mainModules/about/about";
+import ContactSection from "@/components/mainModules/contact/contact";
+import PortfolioSection from "@/components/mainModules/portfolio/portfolio";
+import ProductsSection from "@/components/mainModules/products/products";
+import { scrollToSection } from "@/lib/utils/smoothScroll";
 import { Button, Slider } from "@mantine/core";
 import { useState, useRef } from "react";
 import React from "react";
 
 const EntitiesPage: React.FC = () => {
   const [started, setStarted] = useState<boolean>(false);
+
 
   return (
     <>
@@ -21,15 +26,15 @@ const EntitiesPage: React.FC = () => {
           <div className="mainMenu">
             <nav className="card">
               <div className="leftNavbar">
-                <Button>About</Button>
-                <Button>Portfolio</Button>
+                <Button onClick={() => scrollToSection('about')}>About</Button>
+                <Button onClick={() => scrollToSection('portfolio')}>Portfolio</Button>
               </div>
               <div className="centerNavbar">
 
               </div>
               <div className="rightNavbar">
-                <Button>Products</Button>
-                <Button>Contact</Button>
+                <Button onClick={() => scrollToSection('products')}>Products</Button>
+                <Button onClick={() => scrollToSection('contact')}>Contact</Button>
               </div>
             </nav>
           </div>
@@ -40,50 +45,14 @@ const EntitiesPage: React.FC = () => {
             </p>
           </div>
         </section>
-        <section id="portfolio" className="secondarySection portfolioSection">
-          <div className="title">
-            <h2>
-              Portfolio
-            </h2>
-            <span className="subtitle">Thing that were, are and will be</span>
-          </div>
-          <div className="portfolio contentCard card">
 
-          </div>
-        </section>
-        <section id="about" className="secondarySection aboutSection">
-          <div className="title">
-            <h2>
-              About me
-            </h2>
-            <span className="subtitle">Czech composer, coder, wizard, doing stuff</span>
-          </div>
-          <div className="aboutMe contentCard card">
+        <PortfolioSection/>
 
-          </div>
-        </section>
-        <section id="products" className="secondarySection productsSection">
-          <div className="title">
-            <h2>
-              Products
-            </h2>
-            <span className="subtitle">buy buy buy</span>
-          </div>
-          <div className="products contentCard card">
+        <AboutSection/>
 
-          </div>
-        </section>
-        <section id="contact" className="secondarySection contactSection">
-          <div className="title">
-            <h2>
-              Contact
-            </h2>
-            <span className="subtitle">... or sent a raven</span>
-          </div>
-          <div className="contact contentCard card">
+        <ProductsSection/>
 
-          </div>
-        </section>
+        <ContactSection/>
 
       </div>
     </>
