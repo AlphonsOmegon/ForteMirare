@@ -82,7 +82,7 @@ export class AudioManager {
     }
   }
 
-  async playMusic(trackName: string, fadeTime: number = 2) {
+async playMusic(trackName: string, startPosition: number = 0, fadeTime: number = 0.1) {
     if (!this.context || !this.musicGain) return;
     
     await this.resumeContext();
@@ -101,6 +101,11 @@ export class AudioManager {
     source.buffer = buffer;
     source.loop = false;
 
+    source.onended = () => {
+      this.currentMusic = null;
+      this.notifyListeners();
+    };
+
     const gain = this.context.createGain();
     gain.gain.setValueAtTime(0, this.context.currentTime);
     
@@ -109,13 +114,14 @@ export class AudioManager {
 
     gain.gain.linearRampToValueAtTime(1, this.context.currentTime + fadeTime);
 
-    source.start();
+    const offset = startPosition * buffer.duration;
+    source.start(0, offset);
 
     this.currentMusic = {
       source,
       gain,
       id: trackName,
-      startTime: this.context.currentTime,
+      startTime: this.context.currentTime - offset,
       pausedAt: 0
     };
 

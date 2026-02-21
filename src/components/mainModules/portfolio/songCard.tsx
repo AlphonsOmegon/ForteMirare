@@ -54,6 +54,10 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
         const updatePosition = () => {
             setPosition(audioManager.getSongPosition(songMetadata.id));
             animationFrameId = requestAnimationFrame(updatePosition);
+
+            if(position === duration) {
+                audioManager.stopMusic()
+            }
         };
 
         animationFrameId = requestAnimationFrame(updatePosition);
@@ -76,8 +80,19 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
         }
     };
 
+    const indicatorRef = React.useRef<HTMLDivElement>(null);    
+    const handlePlayerClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (!indicatorRef.current) return;
+        
+        const rect = indicatorRef.current.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const clickPosition = Math.max(0, Math.min(1, clickX / rect.width));
+        
+        audioManager.playMusic(songMetadata.id, clickPosition);
+    };
+
     return (
-        <div className="songCard">
+        <div className={"songCard " + (isPlaying && position < duration  ? "active" : "")}>
             <p className="songTitle">{songMetadata.name}</p>
             <p className="songSubtitle">{songMetadata.subtitle}</p>
 
@@ -92,21 +107,23 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
             </div>
 
             <div className="player">
-                <div className="playerIndicator">
-                    <div className="progressBar" style={{ width: `${duration > 0 ? (position / duration) * 100 : 0}%` }}></div>
-                    <div className={"startPoint " + `${position > 0 ? "active" : ""}`}>
-                        <span>0:00</span>
-                    </div>
-                    <div className="endPoint">
-                        <span>
-                        {
-                        (() => {
-                            const m = Math.floor(duration / 60);
-                            const s = Math.floor(duration % 60);
-                            return `${m}:${s.toString().padStart(2, '0')}`;
-                        })()
-                        }
-                        </span>
+                <div className="playerClickable"  onClick={handlePlayerClick}>
+                    <div className="playerIndicator" ref={indicatorRef}>
+                        <div className="progressBar" style={{ width: `${duration > 0 ? Math.min(100,(position / duration) * 100) : 0}%` }}></div>
+                        <div className={"startPoint " + `${position > 0 ? "active" : ""}`}>
+                            <span>0:00</span>
+                        </div>
+                        <div className={"endPoint " + `${position >= duration ? "active" : ""}`}>
+                            <span>
+                            {
+                            (() => {
+                                const m = Math.floor(duration / 60);
+                                const s = Math.floor(duration % 60);
+                                return `${m}:${s.toString().padStart(2, '0')}`;
+                            })()
+                            }
+                            </span>
+                        </div>
                     </div>
                 </div>
 

@@ -36,7 +36,8 @@ const MainPage: React.FC = () => {
                 <Button onClick={() => scrollToSection('about')}>About me</Button>
               </div>
               <div className="centerNavbar">
-                <img src={"/images/eye.webp"} />
+                <img className="IrisImg" src={"/images/eyeIris.webp"} />
+                <img className="EyeImg" src={"/images/eyeEmpty.webp"} />
               </div>
               <div className="rightNavbar">
                 <Button onClick={() => scrollToSection('products')}>Products</Button>
