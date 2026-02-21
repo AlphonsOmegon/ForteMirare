@@ -4,16 +4,21 @@ import AboutSection from "@/components/mainModules/about/about";
 import ContactSection from "@/components/mainModules/contact/contact";
 import PortfolioSection from "@/components/mainModules/portfolio/portfolio";
 import ProductsSection from "@/components/mainModules/products/products";
+import { audioManager } from "@/lib/audio/audioManager";
 import { scrollToSection } from "@/lib/utils/smoothScroll";
 import { useStickyNavbar } from "@/lib/utils/stickyNavbar";
 import { Button } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 
 const MainPage: React.FC = () => {
   const [started, setStarted] = useState<boolean>(false);
   const { isSticky, navRef } = useStickyNavbar();
 
+  useEffect(() => {
+    audioManager.initialize();
+  }, [])
+  
   return (
     <>
       <div className="mainPageContainer">

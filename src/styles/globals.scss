@@ -2,6 +2,7 @@
 
 :root {
   --text-primary: #ccbba4;
+  --color-primary: #c9402e;
   --background: black;
   --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
 
@@ -20,7 +21,7 @@ body {
 }
 
 * {
-  color: var(--text-primary);
+  //color: var(--text-primary);
   margin: 0;
 }
 
@@ -60,7 +61,8 @@ section {
 
   &.secondarySection {
     .title {
-      margin: 7vh 0;
+      margin-top: 11vh;
+      margin-bottom: 3vh;
       height: 10vh;
       h2 {
         font-size: 4vmin ;
@@ -80,6 +82,7 @@ section {
       margin: 0 10vw;
       width: 80vw;
       min-height: 70vh;
+      padding: 5vmin;
     }
     
   }
@@ -92,6 +95,7 @@ section {
 
 //MANTIME
 .mantine-Button-root {
+  color: var(--text-primary);
   background-color: var(--primary);
   border-radius: var(--border-radius);
   

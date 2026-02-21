@@ -46,6 +46,10 @@ export class AudioManager {
     this.initialized = true;
   }
 
+  private getFilePath(name : string) {
+    return `/songs/${name}/${name}.mp3`
+  }
+
   private async loadAudioFiles() {
     if (!this.context) {
       throw new Error('AudioManager not initialized');
@@ -53,10 +57,10 @@ export class AudioManager {
 
     const loadPromises: Promise<void>[] = [];
 
-    for (const [name, path] of Object.entries(audioConfig.music)) {
+    for (const [id, song] of Object.entries(audioConfig.music)) {
       loadPromises.push(
-        this.loadAudioFile(path).then(buffer => {
-          this.musicBuffers.set(name, buffer);
+        this.loadAudioFile(this.getFilePath(id)).then(buffer => {
+          this.musicBuffers.set(id, buffer);
         })
       );
     }
