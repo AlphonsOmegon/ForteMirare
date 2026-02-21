@@ -20,6 +20,7 @@ export class AudioManager {
   private musicBuffers: Map<string, AudioBuffer> = new Map();
   private currentMusic: ActiveMusic | null = null;
   private initialized = false;
+  private listeners: Set<() => void> = new Set();
 
   private constructor() {}
 
@@ -44,6 +45,7 @@ export class AudioManager {
     await this.loadAudioFiles();
     
     this.initialized = true;
+    this.notifyListeners();
   }
 
   private getFilePath(name : string) {
@@ -116,13 +118,31 @@ export class AudioManager {
       startTime: this.context.currentTime,
       pausedAt: 0
     };
+
+    this.notifyListeners();
   }
 
   pauseMusic() {
     if (!this.currentMusic || !this.context) return;
 
-    this.currentMusic.pausedAt = this.context.currentTime - this.currentMusic.startTime;
-    this.currentMusic.source.stop();
+    const fadeTime = 0.1;
+    const currentTime = this.context.currentTime;
+    
+    this.currentMusic.pausedAt = currentTime - this.currentMusic.startTime;
+    
+    this.currentMusic.gain.gain.cancelScheduledValues(currentTime);
+    this.currentMusic.gain.gain.setValueAtTime(this.currentMusic.gain.gain.value, currentTime);
+    this.currentMusic.gain.gain.linearRampToValueAtTime(0, currentTime + fadeTime);
+    
+    setTimeout(() => {
+      if (this.currentMusic) {
+        try {
+          this.currentMusic.source.stop();
+        } catch (e) {}
+      }
+    }, fadeTime * 1000);
+
+    this.notifyListeners();
   }
 
   resumeMusic() {
@@ -132,12 +152,14 @@ export class AudioManager {
     const buffer = this.musicBuffers.get(this.currentMusic.id);
     if (!buffer) return;
 
+    const fadeTime = 0.1;
     const source = this.context.createBufferSource();
     source.buffer = buffer;
     source.loop = false;
 
     const gain = this.context.createGain();
-    gain.gain.setValueAtTime(this.currentMusic.gain.gain.value, this.context.currentTime);
+    gain.gain.setValueAtTime(0, this.context.currentTime);
+    gain.gain.linearRampToValueAtTime(1, this.context.currentTime + fadeTime);
     
     source.connect(gain);
     gain.connect(this.musicGain);
@@ -148,12 +170,14 @@ export class AudioManager {
     this.currentMusic.gain = gain;
     this.currentMusic.startTime = this.context.currentTime - this.currentMusic.pausedAt;
     this.currentMusic.pausedAt = 0;
+    this.notifyListeners();
   }
 
   stopMusic(fadeTime: number = 2) {
     if (this.currentMusic) {
       this.fadeOutAndStop(this.currentMusic, fadeTime);
       this.currentMusic = null;
+      this.notifyListeners();
     }
   }
 
@@ -236,6 +260,38 @@ export class AudioManager {
       return this.musicGain.gain.value;
     }
     return 0;
+  }
+
+  getAudioBuffer(songId: string): AudioBuffer | null {
+    return this.musicBuffers.get(songId) || null;
+  }
+
+  getSongDuration(songId: string): number {
+    const buffer = this.musicBuffers.get(songId);
+    return buffer?.duration || 0;
+  }
+
+  getSongPosition(songId: string): number {
+    if (!this.currentMusic || this.currentMusic.id !== songId || !this.context) return 0;
+    
+    if (this.currentMusic.pausedAt > 0) {
+      return this.currentMusic.pausedAt;
+    }
+    
+    return this.context.currentTime - this.currentMusic.startTime;
+  }
+
+  isInitialized(): boolean {
+    return this.initialized;
+  }
+
+  subscribe(listener: () => void): () => void {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener);
+  }
+
+  private notifyListeners() {
+    this.listeners.forEach(listener => listener());
   }
 }
 
