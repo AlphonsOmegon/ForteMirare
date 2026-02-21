@@ -1,5 +1,6 @@
 'use client';
 
+import Eye from "@/components/eye/eye";
 import AboutSection from "@/components/mainModules/about/about";
 import ContactSection from "@/components/mainModules/contact/contact";
 import PortfolioSection from "@/components/mainModules/portfolio/portfolio";
@@ -7,6 +8,7 @@ import ProductsSection from "@/components/mainModules/products/products";
 import { audioManager } from "@/lib/audio/audioManager";
 import { scrollToSection } from "@/lib/utils/smoothScroll";
 import { useStickyNavbar } from "@/lib/utils/stickyNavbar";
+import { useIrisTracking } from "@/lib/utils/useIrisTracking";
 import { Button } from "@mantine/core";
 import { useEffect, useState } from "react";
 import React from "react";
@@ -14,6 +16,7 @@ import React from "react";
 const MainPage: React.FC = () => {
   const [started, setStarted] = useState<boolean>(false);
   const { isSticky, navRef } = useStickyNavbar();
+
 
   useEffect(() => {
     audioManager.initialize();
@@ -36,7 +39,7 @@ const MainPage: React.FC = () => {
                 <Button onClick={() => scrollToSection('about')}>About me</Button>
               </div>
               <div className="centerNavbar">
-                <img className="IrisImg" src={"/images/eyeIris.webp"} />
+                <Eye/>
                 <img className="EyeImg" src={"/images/eyeEmpty.webp"} />
               </div>
               <div className="rightNavbar">

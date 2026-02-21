@@ -54,10 +54,6 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
         const updatePosition = () => {
             setPosition(audioManager.getSongPosition(songMetadata.id));
             animationFrameId = requestAnimationFrame(updatePosition);
-
-            if(position === duration) {
-                audioManager.stopMusic()
-            }
         };
 
         animationFrameId = requestAnimationFrame(updatePosition);
@@ -113,7 +109,7 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
                         <div className={"startPoint " + `${position > 0 ? "active" : ""}`}>
                             <span>0:00</span>
                         </div>
-                        <div className={"endPoint " + `${position >= duration ? "active" : ""}`}>
+                        <div className={"endPoint"}>
                             <span>
                             {
                             (() => {

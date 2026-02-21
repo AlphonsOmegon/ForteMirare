@@ -81,52 +81,54 @@ export class AudioManager {
       await this.context.resume();
     }
   }
+  
+  async playMusic(trackName: string, startPosition: number = 0, fadeTime: number = 0.1) {
+      if (!this.context || !this.musicGain) return;
+      
+      await this.resumeContext();
 
-async playMusic(trackName: string, startPosition: number = 0, fadeTime: number = 0.1) {
-    if (!this.context || !this.musicGain) return;
-    
-    await this.resumeContext();
+      const buffer = this.musicBuffers.get(trackName);
+      if (!buffer) {
+        console.warn(`Music track "${trackName}" not found`);
+        return;
+      }
 
-    const buffer = this.musicBuffers.get(trackName);
-    if (!buffer) {
-      console.warn(`Music track "${trackName}" not found`);
-      return;
-    }
+      if (this.currentMusic) {
+        this.fadeOutAndStop(this.currentMusic, fadeTime);
+      }
 
-    if (this.currentMusic) {
-      this.fadeOutAndStop(this.currentMusic, fadeTime);
-    }
+      const source = this.context.createBufferSource();
+      source.buffer = buffer;
+      source.loop = false;
 
-    const source = this.context.createBufferSource();
-    source.buffer = buffer;
-    source.loop = false;
+      const gain = this.context.createGain();
+      gain.gain.setValueAtTime(0, this.context.currentTime);
+      
+      source.connect(gain);
+      gain.connect(this.musicGain);
 
-    source.onended = () => {
-      this.currentMusic = null;
+      gain.gain.linearRampToValueAtTime(1, this.context.currentTime + fadeTime);
+
+      const offset = startPosition * buffer.duration;
+      source.start(0, offset);
+
+      this.currentMusic = {
+        source,
+        gain,
+        id: trackName,
+        startTime: this.context.currentTime - offset,
+        pausedAt: 0
+      };
+
+      source.onended = () => {
+        if (this.currentMusic?.source === source && this.currentMusic.pausedAt === 0) {
+          this.currentMusic = null;
+          this.notifyListeners();
+        }
+      };
+
       this.notifyListeners();
-    };
-
-    const gain = this.context.createGain();
-    gain.gain.setValueAtTime(0, this.context.currentTime);
-    
-    source.connect(gain);
-    gain.connect(this.musicGain);
-
-    gain.gain.linearRampToValueAtTime(1, this.context.currentTime + fadeTime);
-
-    const offset = startPosition * buffer.duration;
-    source.start(0, offset);
-
-    this.currentMusic = {
-      source,
-      gain,
-      id: trackName,
-      startTime: this.context.currentTime - offset,
-      pausedAt: 0
-    };
-
-    this.notifyListeners();
-  }
+    }
 
   pauseMusic() {
     if (!this.currentMusic || !this.context) return;
