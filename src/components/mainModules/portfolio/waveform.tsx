@@ -7,7 +7,7 @@ interface WaveformProps {
     height?: number;
 }
 
-const Waveform: React.FC<WaveformProps> = ({ songId, width = 800, height = 200 }) => {
+const Waveform: React.FC<WaveformProps> = ({ songId, width = 100, height = 50 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
