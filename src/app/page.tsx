@@ -5,13 +5,14 @@ import ContactSection from "@/components/mainModules/contact/contact";
 import PortfolioSection from "@/components/mainModules/portfolio/portfolio";
 import ProductsSection from "@/components/mainModules/products/products";
 import { scrollToSection } from "@/lib/utils/smoothScroll";
-import { Button, Slider } from "@mantine/core";
-import { useState, useRef } from "react";
+import { useStickyNavbar } from "@/lib/utils/stickyNavbar";
+import { Button } from "@mantine/core";
+import { useState } from "react";
 import React from "react";
 
-const EntitiesPage: React.FC = () => {
+const MainPage: React.FC = () => {
   const [started, setStarted] = useState<boolean>(false);
-
+  const { isSticky, navRef } = useStickyNavbar();
 
   return (
     <>
@@ -24,13 +25,13 @@ const EntitiesPage: React.FC = () => {
           </div>  
 
           <div className="mainMenu">
-            <nav className="card">
+            <nav ref={navRef} className={`card ${isSticky ? 'sticky' : ''}`}>
               <div className="leftNavbar">
-                <Button onClick={() => scrollToSection('about')}>About</Button>
                 <Button onClick={() => scrollToSection('portfolio')}>Portfolio</Button>
+                <Button onClick={() => scrollToSection('about')}>About me</Button>
               </div>
               <div className="centerNavbar">
-
+                <img src={"/images/eye.webp"} />
               </div>
               <div className="rightNavbar">
                 <Button onClick={() => scrollToSection('products')}>Products</Button>
@@ -59,4 +60,4 @@ const EntitiesPage: React.FC = () => {
   );
 };
 
-export default EntitiesPage;
+export default MainPage;

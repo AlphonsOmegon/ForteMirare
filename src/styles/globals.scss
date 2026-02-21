@@ -2,7 +2,7 @@
 
 :root {
   --text-primary: #ccbba4;
-  --background: linear-gradient(90deg,rgba(194, 147, 97, 1) 0%, rgba(255, 216, 173, 1) 100%);
+  --background: black;
   --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
 
   --main-title-font: cinzel Decorative;
@@ -60,7 +60,7 @@ section {
 
   &.secondarySection {
     .title {
-      margin: 6vh 0;
+      margin: 7vh 0;
       height: 10vh;
       h2 {
         font-size: 4vmin ;
