@@ -12,6 +12,7 @@ interface SongCardProps {
 const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
+    const [position, setPosition] = useState(0);
 
     useEffect(() => {
         audioManager.initialize();
@@ -19,8 +20,14 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
         const updateState = () => {
             const currentMusic = audioManager.getCurrentMusic();
             const isPaused = audioManager.isPaused();
-            setIsPlaying(currentMusic === songMetadata.id && !isPaused);
+            const isThisSongPlaying = currentMusic === songMetadata.id && !isPaused;
+            
+            setIsPlaying(isThisSongPlaying);
             setDuration(audioManager.getSongDuration(songMetadata.id));
+            
+            if (currentMusic !== songMetadata.id) {
+                setPosition(0);
+            }
         };
 
         updateState();
@@ -28,6 +35,33 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
         const unsubscribe = audioManager.subscribe(updateState);
         return unsubscribe;
     }, [songMetadata.id]);
+
+    useEffect(() => {
+        const currentMusic = audioManager.getCurrentMusic();
+        
+        if (currentMusic !== songMetadata.id) {
+            setPosition(0);
+            return;
+        }
+
+        if (!isPlaying) {
+            setPosition(audioManager.getSongPosition(songMetadata.id));
+            return;
+        }
+
+        let animationFrameId: number;
+
+        const updatePosition = () => {
+            setPosition(audioManager.getSongPosition(songMetadata.id));
+            animationFrameId = requestAnimationFrame(updatePosition);
+        };
+
+        animationFrameId = requestAnimationFrame(updatePosition);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, [isPlaying, songMetadata.id]);
 
     const handlePlayPause = () => {
         const currentMusic = audioManager.getCurrentMusic();
@@ -59,7 +93,8 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
 
             <div className="player">
                 <div className="playerIndicator">
-                    <div className="startPoint">
+                    <div className="progressBar" style={{ width: `${duration > 0 ? (position / duration) * 100 : 0}%` }}></div>
+                    <div className={"startPoint " + `${position > 0 ? "active" : ""}`}>
                         <span>0:00</span>
                     </div>
                     <div className="endPoint">

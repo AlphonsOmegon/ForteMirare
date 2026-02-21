@@ -99,6 +99,14 @@
                     justify-content: space-between;
                     align-items: center;
 
+                    .progressBar {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        background: var(--color-primary);
+                        transition: width 0.1s linear;
+                    }
                     
                     .startPoint {
                         background: var(--text-primary);
@@ -106,6 +114,14 @@
                         height: 10px;
                         border-radius: 50%;
                         position: relative;
+                        z-index: 1;
+                        transition: all 0.5s ease;
+                        transform: translateX(-100%);
+
+                        &.active {
+                            background: var(--color-primary);
+                        }
+
                         span {
                             position: absolute;
                             top: 100%;
@@ -120,6 +136,8 @@
                         height: 10px;
                         border-radius: 50%;
                         position: relative;
+                        z-index: 1;
+                        transform: translateX(100%);
 
                         span {
                             position: absolute;
