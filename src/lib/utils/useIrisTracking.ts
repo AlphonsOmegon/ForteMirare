@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 
 const MAX_RADIUS_PERCENTAGE = 0.03;
+const RESET_DELAY = 1000;
 
 export const useIrisTracking = () => {
   const [irisPosition, setIrisPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     let rafId: number | null = null;
+    let resetTimeout: NodeJS.Timeout | null = null;
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (resetTimeout) clearTimeout(resetTimeout);
+
       if (rafId !== null) return;
 
       rafId = requestAnimationFrame(() => {
@@ -41,6 +45,10 @@ export const useIrisTracking = () => {
 
         setIrisPosition({ x: moveX, y: moveY });
         rafId = null;
+
+        resetTimeout = setTimeout(() => {
+          setIrisPosition({ x: 0, y: 0 });
+        }, RESET_DELAY);
       });
     };
 
@@ -48,6 +56,7 @@ export const useIrisTracking = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       if (rafId !== null) cancelAnimationFrame(rafId);
+      if (resetTimeout) clearTimeout(resetTimeout);
     };
   }, []);
 

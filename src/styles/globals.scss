@@ -16,6 +16,7 @@ body {
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--main-title-font);
+  overflow-x: hidden;
 }
 
 * {
@@ -112,4 +113,34 @@ section {
   &:hover {
     background-color: var(--primary-light);
   }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-text);
+  border-radius: 10px;
+  border: 2px solid var(--background); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e05544;
+  border: 2px solid var(--text-primary);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #a03020;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-primary) var(--background);
 }
