@@ -1,11 +1,11 @@
 .portfolioSection {
     
-    .contentCard {
+    .portfolio.contentCard {
         padding-left: 10vmin;
         padding-right: 10vmin;
 
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         position: relative;
 
@@ -118,18 +118,31 @@
             
             .songImg {
                 margin: 2vmin 0;
-                border-radius: 50%;
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 18vmin;
                 height: 18vmin;
-                border: 3vmin solid black;
+                position: relative;
+                overflow: visible;
 
-                img {
+                img.thumbnail {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 65%;
+                    border-radius: 50%;
+                }
+                
+                img.imgFrame {
+                    z-index: 1;
                     width: 100%;
                 }
+
             }
 
             .keywords {
@@ -141,8 +154,8 @@
                 height: 2vmin;
                 font-size: 1.5vmin;
 
-                margin: 1vmin 0;
-                margin-bottom: 5vmin;
+                margin-top: 2.5vmin;
+                margin-bottom: 2.5vmin;
 
                 span {
                     margin: 0 1vmin ;
@@ -261,5 +274,47 @@
             }
 
         }
+    }
+
+    .youtubeContent.contentCard {
+        padding: 4vmin 10vmin;
+        min-height: 0;
+        
+        
+        .youtubeGrid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            row-gap: 3vmin;
+            column-gap: 3vmin;
+        }
+        
+        .cell {
+            width: 30%;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .wrapper {
+            width: 200%;
+            min-width: 200%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .youtubeFrame {
+                width: 100%;
+                transform: scale(0.49);
+                aspect-ratio: 16 / 9;
+                height: auto;
+                display: flex;
+                margin: -1%;
+            }
+        }
+
     }
 }

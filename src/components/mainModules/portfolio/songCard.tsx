@@ -93,7 +93,8 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
             <p className="songSubtitle">{songMetadata.subtitle}</p>
 
             <div className="songImg">
-                <img src="/songs/Collotrina/Collotrina.webp" alt="songThumbnail" />
+                <img className="thumbnail" src={`/songs/${songMetadata.id}/${songMetadata.id}.webp`} alt="songThumbnail" />
+                <img className="imgFrame" src="/images/frame.webp" alt="frame"/>
             </div>
 
             <div className="keywords">

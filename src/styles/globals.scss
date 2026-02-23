@@ -131,15 +131,6 @@ section {
   border: 2px solid var(--background); 
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #e05544;
-  border: 2px solid var(--text-primary);
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: #a03020;
-}
-
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--text-primary) var(--background);

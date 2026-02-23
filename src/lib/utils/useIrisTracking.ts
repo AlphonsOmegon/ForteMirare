@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const MAX_RADIUS_PERCENTAGE = 0.03;
-const RESET_DELAY = 1000;
+const RESET_DELAY = 800;
 
 export const useIrisTracking = () => {
   const [irisPosition, setIrisPosition] = useState({ x: 0, y: 0 });
