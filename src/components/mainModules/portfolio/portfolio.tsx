@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import "./portfolio.scss";
 import { audioConfig } from "@/lib/audio/audioConfig";
 import SongCard from "./songCard";
-import { ActionIcon, Slider } from "@mantine/core";
+import { Accordion, Button, Slider } from "@mantine/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPause, faPlay, faVolume, faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesDown, faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
 import { audioManager } from "@/lib/audio/audioManager";
 
 const PortfolioSection: React.FC = () => {
 
     const [volume, setVolume] = useState(100);
+    const [visibleSections, setVisibleSections] = useState<string[]>(['section-0']);
 
     const handleVolumeChange = (value: number) => {
         setVolume(value);
@@ -38,7 +39,22 @@ const PortfolioSection: React.FC = () => {
         "7vD4ADu2gVE",
         "1Nfo-1gNQYE",
         "CHcnLAYS79A",
-    ]
+    ];
+
+    const videosPerSection = 3;
+    const sections = [];
+    for (let i = 0; i < videos.length; i += videosPerSection) {
+        sections.push(videos.slice(i, i + videosPerSection));
+    }
+
+    const handleLoadMore = () => {
+        const currentCount = visibleSections.length;
+        if (currentCount < sections.length) {
+            setVisibleSections([...visibleSections, `section-${currentCount}`]);
+        }
+    };
+
+    const hasMoreToLoad = visibleSections.length < sections.length;
     
     return (
     <section id="portfolio" className="secondarySection portfolioSection">
@@ -65,20 +81,57 @@ const PortfolioSection: React.FC = () => {
             <SongCard songMetadata={audioConfig.music.collotrina}/>
             <SongCard songMetadata={audioConfig.music.theCoronation}/>
             <SongCard songMetadata={audioConfig.music.theSilvering}/>
+
         </div>
 
         <div className="youtubeContent contentCard card">
-            <div className="youtubeGrid">
-                {videos.map((video) => (
-                    <div className="cell">
-                        <div className="wrapper">
-                            <iframe key={video}
-                            className="youtubeFrame" width="560" height="315" src={`https://www.youtube-nocookie.com/embed/${video}?controls=1&modestbranding=1&rel=0&playsinline=1`}title="YouTube video player" frameBorder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                        </div>
-                    </div>
 
-                ))}
+            <div className="youtubeHeader">
+               
             </div>
+
+            <Accordion 
+                className="youtubeAccordion"
+                multiple 
+                value={visibleSections}
+                onChange={setVisibleSections}
+            >
+                {sections.map((sectionVideos, sectionIndex) => (
+                    <Accordion.Item 
+                        key={`section-${sectionIndex}`} 
+                        value={`section-${sectionIndex}`}
+                    >
+                        <Accordion.Control style={{ display: 'none' }} />
+                        <Accordion.Panel>
+                            <div className="youtubeGrid">
+                                {sectionVideos.map((video) => (
+                                    <div key={video} className="cell">
+                                        <div className="wrapper">
+                                            <iframe 
+                                                className="youtubeFrame" 
+                                                width="560" 
+                                                height="315" 
+                                                src={`https://www.youtube-nocookie.com/embed/${video}?controls=1&modestbranding=1&rel=0&playsinline=1`}
+                                                title="YouTube video player" 
+                                                frameBorder="0" 
+                                                allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" 
+                                                referrerPolicy="strict-origin-when-cross-origin" 
+                                                allowFullScreen
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </Accordion.Panel>
+                    </Accordion.Item>
+                ))}
+            </Accordion>
+
+            {hasMoreToLoad && (
+                <Button className="loadMore" onClick={handleLoadMore}>
+                    <FontAwesomeIcon icon={faAnglesDown} />
+                </Button>
+            )}
         </div>
     </section>
     );

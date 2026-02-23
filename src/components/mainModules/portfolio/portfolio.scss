@@ -272,14 +272,43 @@
 
 
             }
-
         }
     }
 
     .youtubeContent.contentCard {
         padding: 4vmin 10vmin;
         min-height: 0;
+        position: relative;
+        padding-bottom: 7vmin;
         
+        .youtubeHeader {
+            padding-bottom: 4vmin;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .youtubeAccordion {
+            width: 100%;
+            background: transparent;
+
+            .mantine-Accordion-item {
+                border: none;
+                background: transparent;
+            }
+
+            .mantine-Accordion-control {
+                display: none;
+            }
+
+            .mantine-Accordion-panel {
+                padding: 0;
+            }
+
+            .mantine-Accordion-content {
+                padding: 0;
+            }
+        }
         
         .youtubeGrid {
             display: flex;
@@ -288,6 +317,7 @@
             flex-wrap: wrap;
             row-gap: 3vmin;
             column-gap: 3vmin;
+            margin-bottom: 3vmin;
         }
         
         .cell {
@@ -297,6 +327,8 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            box-shadow: 0px 0px 5px #fbead350;
+            background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
         }
         
         .wrapper {
@@ -315,6 +347,29 @@
                 margin: -1%;
             }
         }
+
+        .loadMore {
+            
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 5vmin;
+
+            background:  linear-gradient(257deg,rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
+
+            box-shadow: 0px 0px 5px #fbead350;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+
+            &:hover {
+                box-shadow: 0px 0px 7px #fff3e3;
+            }
+        }
+    
 
     }
 }
