@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./portfolio.scss";
 import { audioConfig } from "@/lib/audio/audioConfig";
 import SongCard from "./songCard";
@@ -9,13 +9,28 @@ import { audioManager } from "@/lib/audio/audioManager";
 
 const PortfolioSection: React.FC = () => {
 
-    const [volume, setVolume] = useState(100);
+    const [volume, setVolume] = useState(80);
     const [visibleSections, setVisibleSections] = useState<string[]>(['section-0']);
 
     const handleVolumeChange = (value: number) => {
         setVolume(value);
         audioManager.setMusicVolume(value / 100);
     };
+
+    const [videosPerSection, setVideosPerSection] = useState(3) // SSR fallback
+
+    useEffect(() => {
+    const updateVideosPerSection = () => {
+        const width = window.innerWidth
+        if (width <= 576) setVideosPerSection(1)
+        else if (width <= 1024) setVideosPerSection(2)
+        else setVideosPerSection(3)
+    }
+
+    updateVideosPerSection()
+    window.addEventListener("resize", updateVideosPerSection)
+    return () => window.removeEventListener("resize", updateVideosPerSection)
+    }, [])
     
     const videos = [
         "Fa6TeOnjknY",
@@ -41,7 +56,6 @@ const PortfolioSection: React.FC = () => {
         "CHcnLAYS79A",
     ];
 
-    const videosPerSection = 3;
     const sections = [];
     for (let i = 0; i < videos.length; i += videosPerSection) {
         sections.push(videos.slice(i, i + videosPerSection));
@@ -78,60 +92,78 @@ const PortfolioSection: React.FC = () => {
                 <FontAwesomeIcon className="volumeButton max icon" icon={faVolumeHigh} />
             </div>
 
-            <SongCard songMetadata={audioConfig.music.collotrina}/>
-            <SongCard songMetadata={audioConfig.music.theCoronation}/>
-            <SongCard songMetadata={audioConfig.music.theSilvering}/>
-
-        </div>
-
-        <div className="youtubeContent contentCard card">
-
-            <div className="youtubeHeader">
-               
+            <div className="songCardWrapper">
+                <SongCard songMetadata={audioConfig.music.collotrina}/>
+                <SongCard songMetadata={audioConfig.music.theCoronation}/>
+                <SongCard songMetadata={audioConfig.music.theSilvering}/>
+                
             </div>
 
-            <Accordion 
-                className="youtubeAccordion"
-                multiple 
-                value={visibleSections}
-                onChange={setVisibleSections}
-            >
-                {sections.map((sectionVideos, sectionIndex) => (
-                    <Accordion.Item 
-                        key={`section-${sectionIndex}`} 
-                        value={`section-${sectionIndex}`}
-                    >
-                        <Accordion.Control style={{ display: 'none' }} />
-                        <Accordion.Panel>
-                            <div className="youtubeGrid">
-                                {sectionVideos.map((video) => (
-                                    <div key={video} className="cell">
-                                        <div className="wrapper">
-                                            <iframe 
-                                                className="youtubeFrame" 
-                                                width="560" 
-                                                height="315" 
-                                                src={`https://www.youtube-nocookie.com/embed/${video}?controls=1&modestbranding=1&rel=0&playsinline=1`}
-                                                title="YouTube video player" 
-                                                frameBorder="0" 
-                                                allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" 
-                                                referrerPolicy="strict-origin-when-cross-origin" 
-                                                allowFullScreen
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </Accordion.Panel>
-                    </Accordion.Item>
-                ))}
-            </Accordion>
+            <div className="youtubeContent contentCard">
+                <div className="finalist">
+                    <p className="finalistSubtitleContainer">
+                        <span className="finalistSubtitle"><span className="highlight">Finalist</span> of Indie Game Music Contest - Autumn 2025</span>
+                        <span className="citation">"A <span className="highlight">perfect focused concept</span> to support the impact of the narrative/gameplay/visual layer in <span className="highlight">the best possible way</span>"</span>
+                    </p>
+                    <div className="finalistYoutubeContainer">
+                        <iframe 
+                            className="finalistYoutube" 
+                            width="560" 
+                            height="315" 
+                            src={`https://www.youtube-nocookie.com/embed/Y4LSAIGERdc?controls=1&modestbranding=1&rel=0&playsinline=1`}
+                            title="YouTube video player" 
+                            frameBorder="0" 
+                            allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" 
+                            referrerPolicy="strict-origin-when-cross-origin" 
+                            allowFullScreen
+                        />
+                    </div>
+                </div>
 
-            {hasMoreToLoad && (
-                <Button className="loadMore" onClick={handleLoadMore}>
-                    <FontAwesomeIcon icon={faAnglesDown} />
-                </Button>
-            )}
+                <Accordion 
+                    className="youtubeAccordion"
+                    multiple 
+                    value={visibleSections}
+                    onChange={setVisibleSections}
+                >
+                    {sections.map((sectionVideos, sectionIndex) => (
+                        <Accordion.Item 
+                            key={`section-${sectionIndex}`} 
+                            value={`section-${sectionIndex}`}
+                        >
+                            <Accordion.Control style={{ display: 'none' }} />
+                            <Accordion.Panel>
+                                <div className="youtubeGrid">
+                                    {sectionVideos.map((video) => (
+                                        <div key={video} className="cell">
+                                            <div className="wrapper">
+                                                <iframe 
+                                                    className="youtubeFrame" 
+                                                    width="560" 
+                                                    height="315" 
+                                                    src={`https://www.youtube-nocookie.com/embed/${video}?controls=1&modestbranding=1&rel=0&playsinline=1`}
+                                                    title="YouTube video player" 
+                                                    frameBorder="0" 
+                                                    allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" 
+                                                    referrerPolicy="strict-origin-when-cross-origin" 
+                                                    allowFullScreen
+                                                />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                    ))}
+                </Accordion>
+
+                {hasMoreToLoad && (
+                    <Button className="loadMore" onClick={handleLoadMore}>
+                        <FontAwesomeIcon icon={faAnglesDown} />
+                    </Button>
+                )}
+
+            </div>
         </div>
     </section>
     );

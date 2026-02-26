@@ -1,18 +1,19 @@
 .portfolioSection {
     
     .portfolio.contentCard {
-        padding-left: 10vmin;
-        padding-right: 10vmin;
+        padding-left: 5rem;
+        padding-right: 5rem;
 
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
+        flex-direction: column;
         position: relative;
 
         .volumeControl {
             position: absolute;
-            height: 5vmin;
-            top: 2%;
+            height: 3rem;
+            top: 0%;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -57,235 +58,276 @@
             }
         }
 
-        .songCard {
-            background-color: rgba(0, 0, 0, 0.397);
-            background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
-            width: 28%;
+        .songCardWrapper {
             display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-direction: column;
-            padding: 2vmin;
-            border-top-left-radius: 1vmin;
-            border-bottom-right-radius: 1vmin;
-            box-shadow: 0px 0px 5px #fbead350;
-            transition: all 0.5s ease;
+            justify-content: space-between;
+            align-items: stretch;
             position: relative;
-            
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
-                opacity: 0;
-                transition: opacity 0.5s ease;
-                border-top-left-radius: 1vmin;
-                border-bottom-right-radius: 1vmin;
-                pointer-events: none;
-                z-index: 0;
-            }
-            
-            & > * {
+            width: 100%;
+
+            .songCard {
+                background-color: rgba(0, 0, 0, 0.397);
+                background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+                width: 30%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: column;
+                padding: 2rem;
+                border-top-left-radius: 1rem;
+                border-bottom-right-radius: 1rem;
+                box-shadow: 0px 0px 5px #fbead350;
+                transition: all 0.5s ease;
                 position: relative;
-                z-index: 1;
-            }
-            
-            &:hover, &.active {
-                transform: translateY(-0.2vmin);
-                box-shadow: 0px 0px 10px #fff3e3;
                 
                 &::before {
-                    opacity: 1;
-                }
-            }
-            
-            
-            .songTitle {
-                font-weight: bold;
-                font-size: 2vmin;
-                letter-spacing: 0.4vmin;
-                height: 3vmin;
-            }
-            
-            .songSubtitle {
-                font-size: 1vmin;
-                letter-spacing: 0.4vmin;
-                height: 2vmin;
-            }
-            
-            .songImg {
-                margin: 2vmin 0;
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 18vmin;
-                height: 18vmin;
-                position: relative;
-                overflow: visible;
-
-                img.thumbnail {
+                    content: '';
                     position: absolute;
                     top: 0;
                     left: 0;
-                    bottom: 0;
                     right: 0;
-                    margin: auto;
-                    width: 65%;
-                    border-radius: 50%;
+                    bottom: 0;
+                    background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
+                    opacity: 0;
+                    transition: opacity 0.5s ease;
+                    border-top-left-radius: 1rem;
+                    border-bottom-right-radius: 1rem;
+                    pointer-events: none;
+                    z-index: 0;
                 }
                 
-                img.imgFrame {
-                    z-index: 1;
-                    width: 100%;
-                }
-
-            }
-
-            .keywords {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-wrap: wrap;
-                height: 2vmin;
-                font-size: 1.5vmin;
-
-                margin-top: 2.5vmin;
-                margin-bottom: 2.5vmin;
-
-                span {
-                    margin: 0 1vmin ;
-                }
-            }
-
-            .description {
-                margin-top: 2vmin;
-                height: 20vmin;
-                font-size: 1.1vmin;
-                text-align: justify;
-                letter-spacing: 0.2vmin;
-            }
-
-            .player {
-                align-content: flex-end;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                width: 100%;
-
-                .playerButton {
-                    border-radius: 50%;
-                    background-color: var(--text-primary);
-                    color: var(--color-primary);
-                    width: 1px;
-
+                & > * {
                     position: relative;
-                    transform: scale(0.8);
-                    span {
-                        width: 10px;
-                        svg.icon {
-                           color: var(--color-primary);
-                       }
-                    }
-
+                    z-index: 1;
                 }
-
-                .playerClickable {
-                    margin: 1.5vmin 0;
-                    padding: 5px 0;
+                
+                &:hover, &.active {
+                    transform: translateY(-0.2rem);
+                    box-shadow: 0px 0px 10px #fff3e3;
+                    
+                    &::before {
+                        opacity: 1;
+                    }
+                }
+                
+                
+                .songTitle {
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    letter-spacing: 0.2rem;
+                    height: 2.2rem;
+                    text-align: center;
+                    white-space: nowrap;
+                }
+                
+                .songSubtitle {
+                    font-size: 0.8rem;
+                    letter-spacing: 0.3rem;
+                    min-height: 2rem;
+                    padding-bottom: 1rem;
+                    text-align: center;
+                }
+                
+                .songImg {
+                    margin: 1.4rem 0;
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 12rem;
+                    height: 12rem;
+                    position: relative;
+                    overflow: visible;
+    
+                    img.thumbnail {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        margin: auto;
+                        width: 65%;
+                        border-radius: 50%;
+                    }
+                    
+                    img.imgFrame {
+                        z-index: 1;
+                        width: 100%;
+                    }
+    
+                }
+    
+                .keywords {
                     width: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    cursor: pointer;
-
-                    .playerIndicator {
-                        width: calc(100% - 20px);
-                        position: relative;
-                        height: 3px;
-                        background: var(--text-primary);
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
+                    flex-wrap: wrap;
+                    min-height: 2rem;
+                    font-size: 1rem;
     
-                        .progressBar {
-                            position: absolute;
-                            height: 100%;
-                            left: 0;
-                            top: 0;
-                            background: var(--color-primary);
-                            transition: width 0.01s linear;
-                        }
-                        
-                        .startPoint {
-                            background: var(--text-primary);
-                            width: 10px;
-                            height: 10px;
-                            border-radius: 50%;
-                            position: relative;
-                            z-index: 1;
-                            transition: all 0.5s ease;
-                            transform: translateX(-100%);
+                    margin-top: 1.7rem;
+                    margin-bottom: 0.4rem;
     
-                            &.active {
-                                background: var(--color-primary);
-                            }
-    
-                            span {
-                                position: absolute;
-                                top: 100%;
-                                left: 0;
-                                font-size: 1.5vmin;
-                                pointer-events: none;
-                            }
-                        }
-    
-                        .endPoint {
-                            background: var(--text-primary);
-                            width: 10px;
-                            height: 10px;
-                            border-radius: 50%;
-                            position: relative;
-                            z-index: 1;
-                            transform: translateX(100%);
-                            transition: all 0.5s ease;
-    
-                            &.active {
-                                background: var(--color-primary);
-                            }
-                            span {
-                                position: absolute;
-                                top: 100%;
-                                right: 0;
-                                font-size: 1.5vmin;
-                                pointer-events: none;
-                            }
-    
-                        }
+                    span {
+                        margin: 0 0.7rem ;
                     }
                 }
-
-
+    
+                .player {
+                    align-content: flex-end;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    width: 100%;
+    
+                    .playerButton {
+                        border-radius: 50%;
+                        background-color: var(--text-primary);
+                        color: var(--color-primary);
+                        width: 1px;
+    
+                        position: relative;
+                        transform: scale(0.8);
+                        span {
+                            width: 10px;
+                            svg.icon {
+                               color: var(--color-primary);
+                           }
+                        }
+    
+                    }
+    
+                    .playerClickable {
+                        margin: 1rem 0;
+                        padding: 5px 0;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+    
+                        .playerIndicator {
+                            width: calc(100% - 20px);
+                            position: relative;
+                            height: 3px;
+                            background: var(--text-primary);
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+        
+                            .progressBar {
+                                position: absolute;
+                                height: 100%;
+                                left: 0;
+                                top: 0;
+                                background: var(--color-primary);
+                                transition: width 0.01s linear;
+                            }
+                            
+                            .startPoint {
+                                background: var(--text-primary);
+                                width: 10px;
+                                height: 10px;
+                                border-radius: 50%;
+                                position: relative;
+                                z-index: 1;
+                                transition: all 0.5s ease;
+                                transform: translateX(-100%);
+        
+                                &.active {
+                                    background: var(--color-primary);
+                                }
+        
+                                span {
+                                    position: absolute;
+                                    top: 100%;
+                                    left: 0;
+                                    font-size: 1rem;
+                                    pointer-events: none;
+                                }
+                            }
+        
+                            .endPoint {
+                                background: var(--text-primary);
+                                width: 10px;
+                                height: 10px;
+                                border-radius: 50%;
+                                position: relative;
+                                z-index: 1;
+                                transform: translateX(100%);
+                                transition: all 0.5s ease;
+        
+                                &.active {
+                                    background: var(--color-primary);
+                                }
+                                span {
+                                    position: absolute;
+                                    top: 100%;
+                                    right: 0;
+                                    font-size: 1rem;
+                                    pointer-events: none;
+                                }
+        
+                            }
+                        }
+                    }
+    
+    
+                }
             }
         }
     }
 
     .youtubeContent.contentCard {
-        padding: 4vmin 10vmin;
+        padding: 2.8rem 5rem;
         min-height: 0;
-        position: relative;
-        padding-bottom: 7vmin;
+        padding-bottom: 1rem;
         
-        .youtubeHeader {
-            padding-bottom: 4vmin;
+        .finalist {
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+
+            .finalistSubtitleContainer {
+                text-align: center;
+                margin-bottom: 1.2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                
+                .finalistSubtitle {
+                    font-size: 1.2rem;
+                    letter-spacing: 0.4rem;
+                    padding: 0 5rem;
+                }
+                
+                .citation {
+                    margin-top: 0.5rem;
+                    max-width: 40%;
+                    font-size: 0.9rem;
+                    font-style: italic;
+                }
+            }
+
+
+            .finalistYoutubeContainer {
+                width: 80%;
+                aspect-ratio: 16 / 9;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .finalistYoutube {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
         }
 
         .youtubeAccordion {
@@ -315,36 +357,37 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            row-gap: 3vmin;
-            column-gap: 3vmin;
-            margin-bottom: 3vmin;
-        }
-        
-        .cell {
-            width: 30%;
-            aspect-ratio: 16 / 9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            box-shadow: 0px 0px 5px #fbead350;
-            background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
-        }
-        
-        .wrapper {
-            width: 200%;
-            min-width: 200%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            row-gap: 3rem;
+            margin-bottom: 2rem;
 
-            .youtubeFrame {
-                width: 100%;
-                transform: scale(0.49);
+            .cell {
+                width: 30%;
                 aspect-ratio: 16 / 9;
-                height: auto;
                 display: flex;
-                margin: -1%;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                box-shadow: 0px 0px 5px #fbead350;
+                background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
+                border-top-left-radius: 1rem;
+                border-bottom-right-radius: 1rem;
+    
+                .wrapper {
+                    width: 200%;
+                    min-width: 200%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+        
+                    .youtubeFrame {
+                        width: 100%;
+                        transform: scale(0.49);
+                        aspect-ratio: 16 / 9;
+                        height: auto;
+                        display: flex;
+                        margin: -1%;
+                    }
+                }
             }
         }
 
@@ -355,7 +398,7 @@
             left: 0;
             right: 0;
             width: 100%;
-            height: 5vmin;
+            height: 3rem;
 
             background:  linear-gradient(257deg,rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
 
@@ -371,5 +414,82 @@
         }
     
 
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .portfolioSection {
+        .portfolio.contentCard {
+            .songCardWrapper {
+
+                flex-wrap: wrap;
+                row-gap: 2rem;
+                column-gap: 2rem;
+                justify-content: center;
+
+                .songCard {
+                    width: 45%;
+                }
+            }
+        }
+
+        .youtubeContent.contentCard  {
+            .youtubeGrid {
+                row-gap: 2rem;
+                column-gap: 2rem;
+                justify-content: center;
+
+                .cell {
+                    width: 45%;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .portfolioSection {
+        .portfolio.contentCard {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            .youtubeContent {
+                padding-left: 0rem;
+                padding-right: 0rem;
+            }
+        }
+        
+    }
+}
+
+@media (max-width: 576px) {
+  .portfolioSection {
+        .portfolio.contentCard {
+            .songCardWrapper {
+
+                flex-wrap: wrap;
+                row-gap: 2rem;
+                column-gap: 2rem;
+                justify-content: center;
+
+                .songCard {
+                    margin: 0;
+                    width: 100%;
+                }
+            }
+        }
+
+        .youtubeContent.contentCard  {
+            .youtubeGrid {
+                row-gap: 2rem;
+                column-gap: 2rem;
+                justify-content: center;
+
+                .cell {
+                    width: 90%;
+                }
+            }
+        }
     }
 }

@@ -1,15 +1,16 @@
-@keyframes float {
+@keyframes imageFloat {
     0%, 100% {
-        transform: translateY(-0.5vmin);
+        transform: translateY(-0.5rem);
     }
     50% {
-        transform: translateY(0.5vmin);
+        transform: translateY(0.5rem);
     }
 }
 
+
 .mainPageContainer {
     width: 100%;
-
+    position: relative;
     background-image: url('/images/background.webp');
     background-repeat: repeat;
     background-position: center;
@@ -19,8 +20,12 @@
     .introSection {
         justify-content: center;
         height: 100vh;
+
         .title {
             height: 20%;
+            width: 100%;
+            text-align: center;
+            padding: 0 10vw;
         }
         
         .mainMenu {
@@ -30,7 +35,7 @@
             justify-content: center;
             align-items: center;
             nav {
-                height: 6vmin;
+                height: 4rem;
                 width: 100%;
                 display: flex;
                 justify-content: center;
@@ -46,9 +51,9 @@
                     
                     Button {
                         width: 30vw;
-                        font-size: 1.2vw;
-                        letter-spacing: 0.5vw;
-                        padding: 0 0.5vw;
+                        font-size: 1.3rem;
+                        letter-spacing: 0.5rem;
+                        padding: 0 0.5rem;
                         overflow: visible;
                         color: var(--text-primary);
                         font-weight: lighter;
@@ -65,7 +70,7 @@
                     width: 20%;
                     transition: all 1s ease;
                     position: relative;
-                    animation: float 5s ease-in-out infinite;
+                    animation: imageFloat 5s ease-in-out infinite;
                     img {
                         position: absolute;
                         top: 0;
@@ -100,16 +105,121 @@
         }
 
         .introAnnotation {
+            width: 100%;
             height: 20%;
             display: flex;
             justify-content: center;
             align-items: center;
-            
+            flex-direction: column;
+
+
             p {
-                font-size: 1.5vmin;
+                font-size: 1.1rem;
                 text-align: center;
-                margin: 0 15vmin;
+                padding: 0 2rem;
+                text-shadow: 0 0 50px black;
+                
+
             }
         }
     }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1.2rem;
+        font-size: 0.8rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            display: flex;
+            align-items: center;
+            line-height: 1px;
+            letter-spacing: 0.5rem;
+        }
+    }
+}
+
+
+@media (max-width: 1024px) {
+  .mainPageContainer {
+    .introSection {
+        nav.card {
+            height: 6rem;
+
+            position: relative;
+
+            .centerNavbar {
+                position: absolute;
+                width: 200px;
+                bottom: 250%;
+            }
+
+            .leftNavbar, .rightNavbar {
+                width: 50%;
+
+                button {
+                    width: unset;
+                }
+            }
+        }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mainPageContainer {
+    .introSection {
+        justify-content: space-between;
+        nav.card {
+            justify-content: space-evenly;
+            .leftNavbar, .rightNavbar {
+                flex-direction: column;
+                row-gap: 1rem;
+                width: 30%;
+            }
+
+            .centerNavbar {
+                position: absolute;
+                width: 160px;
+                bottom: 300%;
+            }
+        }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .mainPageContainer {
+    .introSection {
+
+        div.introAnnotation {
+            p {
+                font-size: 1.5rem;
+            }
+
+            padding-bottom: 20vh;
+        }
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .mainPageContainer {
+    .introSection {
+
+        nav.card {
+            .centerNavbar {
+                position: absolute;
+                width: 200px;
+                bottom: 350%;
+            }
+        }
+    }
+  }
 }

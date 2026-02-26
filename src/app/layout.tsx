@@ -4,10 +4,9 @@ import "@mantine/core/styles.css";
 import "../styles/globals.scss";
 import "../styles/mainPage/mainPage.scss";
 import React from "react";
-import { audioManager } from "@/lib/audio/audioManager";
 
 export const metadata: Metadata = {
-  title: "ForteMirare",
+  title: "Forte Mirare",
   description: "SEO optimized web application",
 };
 
@@ -16,7 +15,6 @@ interface RootLayoutProps {
 }
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
-
   return (
     <html lang="en">
       <body>

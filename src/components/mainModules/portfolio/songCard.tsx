@@ -108,7 +108,16 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
                     <div className="playerIndicator" ref={indicatorRef}>
                         <div className="progressBar" style={{ width: `${duration > 0 ? Math.min(100,(position / duration) * 100) : 0}%` }}></div>
                         <div className={"startPoint " + `${position > 0 ? "active" : ""}`}>
-                            <span>0:00</span>
+                            <span>
+                                {
+                                (() => {
+                                    const clampedPosition = Math.min(position, duration);
+                                    const m = Math.floor(position / 60);
+                                    const s = Math.floor(position % 60);
+                                    return `${m}:${s.toString().padStart(2, '0')}`;
+                                })()
+                                }
+                            </span>
                         </div>
                         <div className={"endPoint"}>
                             <span>
