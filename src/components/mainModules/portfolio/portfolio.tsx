@@ -33,24 +33,24 @@ const PortfolioSection: React.FC = () => {
     }, [])
     
     const videos = [
+        "anl9I4Konvc",
         "Fa6TeOnjknY",
         "eZ2Y1Kh0UAc",
         "dAsVGmos9d0",
         "6o7KDHhqVVw",
+        "g4Df5OhjWTI",
+        "Q8SqWsUo3OA",
         "CnQ3e7gVAK4",
         "wJNvOXcPhBs",
         "bJVYHNumHnQ",
         "j74WXZxYBQ4",
         "IMqJ6iHUwa8",
         "t_VrXRuwJAA",
-        "0SBXPNXTuuo",
         "lnJl5Ej9zwA",
         "XOuQ9ThbDP0",
         "C5OUbu1huJM",
         "DXGMsVzGiII",
-        "TnEIjz6TTaE",
         "w0_f-Wu7Iw8",
-        "leepAh0hpSA",
         "7vD4ADu2gVE",
         "1Nfo-1gNQYE",
         "CHcnLAYS79A",
@@ -93,9 +93,9 @@ const PortfolioSection: React.FC = () => {
             </div>
 
             <div className="songCardWrapper">
-                <SongCard songMetadata={audioConfig.music.collotrina}/>
-                <SongCard songMetadata={audioConfig.music.theCoronation}/>
-                <SongCard songMetadata={audioConfig.music.theSilvering}/>
+                <SongCard songMetadata={audioConfig.music.breathOfDoomed}/>
+                <SongCard songMetadata={audioConfig.music.quantumHermit}/>
+                <SongCard songMetadata={audioConfig.music.laBahia}/>
                 
             </div>
 

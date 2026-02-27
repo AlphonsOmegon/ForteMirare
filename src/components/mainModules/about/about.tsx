@@ -15,10 +15,10 @@ const AboutSection: React.FC = () => {
                 I am a professional coder and composer. Music for me, is a&nbsp;pinnacle of&nbsp;psychological arts - for it can speak to our psyche without words.
             </p>
             <p>
-                My songs are ambient stories of… transformation… of&nbsp;<span className="highlight">the Hero’s Journey</span>
+                My songs are ambient stories of... transformation... of&nbsp;<span className="highlight">the Hero’s Journey</span>
             </p>
             <p>
-                But ultimately, true beauty is hidden in Collaboration, which is why I aim to use my music to enhance larger works and&nbsp;experiences.
+                But ultimately, true beauty is hidden in <span className="highlight">collaboration</span>, which is why I aim to use my music to enhance larger works and&nbsp;experiences.
             </p>
             <p>
                 I can help your game (or other project) achieve immersion, emotional depth, and&nbsp;<span className="highlight">mythic gravitas</span>.
