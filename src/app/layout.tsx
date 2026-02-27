@@ -6,11 +6,19 @@ import "../styles/mainPage/mainPage.scss";
 import React from "react";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fortemirare.com'),
   title: "Forte Mirare | Composer & Music Producer for Games",
   description: "Czech composer and coder specializing in ambient orchestral music for games and artistic projects. Custom soundtracks with mythic gravitas and emotional depth.",
   keywords: "game composer, music producer, orchestral music, ambient soundtrack, Czech composer, video game music, custom composition",
   authors: [{ name: "Forte Mirare" }],
   creator: "Forte Mirare",
+  alternates: {
+    canonical: '/',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: "Forte Mirare | Composer & Music Producer",
     description: "Czech composer and coder specializing in ambient orchestral music for games and artistic projects. Custom soundtracks with mythic gravitas and emotional depth.",
@@ -54,6 +62,23 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     <html lang="en">
       <body>
         <MantineProvider>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Forte Mirare",
+                "jobTitle": "Composer & Music Producer",
+                "description": "Czech composer and coder specializing in ambient orchestral music for games",
+                "url": "https://fortemirare.com",
+                "nationality": "Czech",
+                "knowsAbout": ["Music Composition", "Game Audio", "Orchestral Music", "Ambient Music"]
+              })
+            }}
+          />
+
           {children}
         </MantineProvider>
       </body>
