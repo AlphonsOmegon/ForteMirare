@@ -6,6 +6,7 @@ import { Accordion, Button, Slider } from "@mantine/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesDown, faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
 import { audioManager } from "@/lib/audio/audioManager";
+import { LazyYouTube } from "@/components/youtubeComponent/LazyYoutube";
 
 const PortfolioSection: React.FC = () => {
 
@@ -81,14 +82,14 @@ const PortfolioSection: React.FC = () => {
             <div className="volumeControl">
                 <FontAwesomeIcon className="volumeButton min icon" icon={faVolumeXmark} />
                 <Slider
-                    aria-label="Volume Slider"
-                    aria-valuetext={`${volume}%`}
-                    className="volumeRange"
+                    label={(val) => `${val}%`}
+                    thumbLabel="Volume"
                     value={volume}
                     onChange={handleVolumeChange}
                     min={0}
                     max={100}
                     step={1}
+                    className="volumeRange"
                     style={{ flex: 1 }}
                 />
                 <FontAwesomeIcon className="volumeButton max icon" icon={faVolumeHigh} />
@@ -108,17 +109,7 @@ const PortfolioSection: React.FC = () => {
                         <span className="citation">"A <span className="highlight">perfect focused concept</span> to support the impact of the narrative/gameplay/visual layer in <span className="highlight">the best possible way</span>"</span>
                     </p>
                     <div className="finalistYoutubeContainer">
-                        <iframe 
-                            className="finalistYoutube" 
-                            width="560" 
-                            height="315" 
-                            src={`https://www.youtube-nocookie.com/embed/Y4LSAIGERdc?controls=1&modestbranding=1&rel=0&playsinline=1`}
-                            title="YouTube video player" 
-                            frameBorder="0" 
-                            allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" 
-                            referrerPolicy="strict-origin-when-cross-origin" 
-                            allowFullScreen
-                        />
+                        <LazyYouTube videoId="Y4LSAIGERdc" className="finalistYoutube" />
                     </div>
                 </div>
 
@@ -139,17 +130,7 @@ const PortfolioSection: React.FC = () => {
                                     {sectionVideos.map((video) => (
                                         <div key={video} className="cell">
                                             <div className="wrapper">
-                                                <iframe 
-                                                    className="youtubeFrame" 
-                                                    width="560" 
-                                                    height="315" 
-                                                    src={`https://www.youtube-nocookie.com/embed/${video}?controls=1&modestbranding=1&rel=0&playsinline=1`}
-                                                    title="YouTube video player" 
-                                                    frameBorder="0" 
-                                                    allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" 
-                                                    referrerPolicy="strict-origin-when-cross-origin" 
-                                                    allowFullScreen
-                                                />
+                                                <LazyYouTube videoId={video} className="youtubeFrame" />
                                             </div>
                                         </div>
                                     ))}

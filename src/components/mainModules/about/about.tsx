@@ -26,7 +26,7 @@ const AboutSection: React.FC = () => {
           </div>
 
           <div className="centerColumn">
-            <img src="/images/face.webp" alt="Forte Mirare Profile Image" />
+            <img width={360} src="/images/face.webp" alt="Forte Mirare Profile Image" />
           </div>
 
           <div className="rightColumn">
