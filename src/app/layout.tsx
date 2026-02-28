@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: "Forte Mirare | Composer & Music Producer",
+    title: "Forte Mirare | Composer & Music Producer for Games",
     description: "Czech composer and coder specializing in ambient orchestral music for games and artistic projects. Custom soundtracks with mythic gravitas and emotional depth.",
     url: "https://fortemirare.com",
     siteName: "Forte Mirare",
