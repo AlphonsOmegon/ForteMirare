@@ -71,6 +71,8 @@
                     transition: all 1s ease;
                     position: relative;
                     animation: imageFloat 5s ease-in-out infinite;
+                    aspect-ratio: 1 / 1;
+                    
                     img {
                         position: absolute;
                         top: 0;
@@ -79,6 +81,7 @@
                         right: 0;
                         margin: auto;
                         width: 100%;
+                        height: 100%;
                         transition: all 0.2s ease;
                     }
                 }
@@ -156,8 +159,8 @@
 
             .centerNavbar {
                 position: absolute;
-                width: 200px;
-                bottom: 250%;
+                width: 150px;
+                bottom: 100%;
             }
 
             .leftNavbar, .rightNavbar {
@@ -186,8 +189,8 @@
 
             .centerNavbar {
                 position: absolute;
-                width: 160px;
-                bottom: 300%;
+                width: 200px;
+                bottom: 130%;
             }
         }
     }
@@ -217,7 +220,7 @@
             .centerNavbar {
                 position: absolute;
                 width: 200px;
-                bottom: 350%;
+                bottom: 170%;
             }
         }
     }

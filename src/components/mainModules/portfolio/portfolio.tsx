@@ -17,7 +17,7 @@ const PortfolioSection: React.FC = () => {
         audioManager.setMusicVolume(value / 100);
     };
 
-    const [videosPerSection, setVideosPerSection] = useState(3) // SSR fallback
+    const [videosPerSection, setVideosPerSection] = useState(3)
 
     useEffect(() => {
     const updateVideosPerSection = () => {
@@ -81,6 +81,8 @@ const PortfolioSection: React.FC = () => {
             <div className="volumeControl">
                 <FontAwesomeIcon className="volumeButton min icon" icon={faVolumeXmark} />
                 <Slider
+                    aria-label="Volume Slider"
+                    aria-valuetext={`${volume}%`}
                     className="volumeRange"
                     value={volume}
                     onChange={handleVolumeChange}
@@ -158,7 +160,7 @@ const PortfolioSection: React.FC = () => {
                 </Accordion>
 
                 {hasMoreToLoad && (
-                    <Button className="loadMore" onClick={handleLoadMore}>
+                    <Button aria-label="Load More Songs" className="loadMore" onClick={handleLoadMore}>
                         <FontAwesomeIcon icon={faAnglesDown} />
                     </Button>
                 )}

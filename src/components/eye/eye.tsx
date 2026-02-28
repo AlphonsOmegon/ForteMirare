@@ -6,7 +6,7 @@ const Eye: React.FC = () => {
     
     return (
         <>
-        <img className="IrisImg" src={"/images/eyeIris.webp"}  
+        <img alt="Moving Iris For Animated Banner" width="200" height="200" className="IrisImg" src={"/images/eyeIris.webp"}  
             style={{
             transform: `translate(${irisPosition.x}px, ${irisPosition.y}px)`
             }}/>

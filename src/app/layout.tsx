@@ -60,6 +60,10 @@ interface RootLayoutProps {
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body>
         <MantineProvider>
 
@@ -78,8 +82,9 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
               })
             }}
           />
-
+          <main>
           {children}
+          </main>
         </MantineProvider>
       </body>
     </html>

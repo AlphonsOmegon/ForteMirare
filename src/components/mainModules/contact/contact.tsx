@@ -25,7 +25,7 @@ const ContactSection: React.FC = () => {
             <span>YouTube</span>
           </a>
           <div className="emailContact">
-            <a href="mailto:fortemirare@gmail.com">
+            <a aria-label="Email" href="mailto:fortemirare@gmail.com">
               <FontAwesomeIcon icon={faEnvelope} />
             </a>
             <span className={`copy ${showCopied ? 'copied' : ''}`} onClick={handleCopy}>fortemirare@gmail.com</span>

@@ -89,7 +89,7 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
 
     return (
         <div className={"songCard " + (isPlaying && position < duration  ? "active" : "")}>
-            <p className="songTitle">{songMetadata.name}</p>
+            <h3 className="songTitle">{songMetadata.name}</h3>
             <p className="songSubtitle">{songMetadata.subtitle}</p>
 
             <div className="songImg">
@@ -133,7 +133,7 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
                     </div>
                 </div>
 
-                <ActionIcon className="playerButton" size="lg" variant="filled" onClick={handlePlayPause}>
+                <ActionIcon aria-label="Play" className="playerButton" size="lg" variant="filled" onClick={handlePlayPause}>
                     <FontAwesomeIcon className="icon" icon={isPlaying ? faPause : faPlay} />
                 </ActionIcon>
             </div>

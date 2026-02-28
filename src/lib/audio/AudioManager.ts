@@ -18,6 +18,7 @@ export class AudioManager {
   private musicGain: GainNode | null = null;
   
   private musicBuffers: Map<string, AudioBuffer> = new Map();
+  private loadingPromises: Map<string, Promise<AudioBuffer>> = new Map();
   private currentMusic: ActiveMusic | null = null;
   private initialized = false;
   private listeners: Set<() => void> = new Set();
@@ -42,38 +43,34 @@ export class AudioManager {
     this.musicGain = this.context.createGain();
     this.musicGain.connect(this.masterGain);
     
-    await this.loadAudioFiles();
-    
     this.initialized = true;
     this.notifyListeners();
   }
 
-  private getFilePath(name : string) {
+  private getFilePath(name: string) {
     return `/songs/${name}/${name}.mp3`
   }
 
-  private async loadAudioFiles() {
-    if (!this.context) {
-      throw new Error('AudioManager not initialized');
+  private async loadAudioFile(trackName: string): Promise<AudioBuffer> {
+    if (this.musicBuffers.has(trackName)) {
+      return this.musicBuffers.get(trackName)!;
     }
 
-    const loadPromises: Promise<void>[] = [];
-
-    for (const [id, song] of Object.entries(audioConfig.music)) {
-      loadPromises.push(
-        this.loadAudioFile(this.getFilePath(id)).then(buffer => {
-          this.musicBuffers.set(id, buffer);
-        })
-      );
+    if (this.loadingPromises.has(trackName)) {
+      return this.loadingPromises.get(trackName)!;
     }
 
-    await Promise.all(loadPromises);
-  }
+    const loadPromise = (async () => {
+      const response = await fetch(this.getFilePath(trackName));
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = await this.context!.decodeAudioData(arrayBuffer);
+      this.musicBuffers.set(trackName, buffer);
+      this.loadingPromises.delete(trackName);
+      return buffer;
+    })();
 
-  private async loadAudioFile(path: string): Promise<AudioBuffer> {
-    const response = await fetch(path);
-    const arrayBuffer = await response.arrayBuffer();
-    return await this.context!.decodeAudioData(arrayBuffer);
+    this.loadingPromises.set(trackName, loadPromise);
+    return loadPromise;
   }
 
   async resumeContext() {
@@ -83,52 +80,48 @@ export class AudioManager {
   }
   
   async playMusic(trackName: string, startPosition: number = 0, fadeTime: number = 0.1) {
-      if (!this.context || !this.musicGain) return;
-      
-      await this.resumeContext();
+    if (!this.context || !this.musicGain) return;
+    
+    await this.resumeContext();
 
-      const buffer = this.musicBuffers.get(trackName);
-      if (!buffer) {
-        console.warn(`Music track "${trackName}" not found`);
-        return;
-      }
+    const buffer = await this.loadAudioFile(trackName);
 
-      if (this.currentMusic) {
-        this.fadeOutAndStop(this.currentMusic, fadeTime);
-      }
-
-      const source = this.context.createBufferSource();
-      source.buffer = buffer;
-      source.loop = false;
-
-      const gain = this.context.createGain();
-      gain.gain.setValueAtTime(0, this.context.currentTime);
-      
-      source.connect(gain);
-      gain.connect(this.musicGain);
-
-      gain.gain.linearRampToValueAtTime(1, this.context.currentTime + fadeTime);
-
-      const offset = startPosition * buffer.duration;
-      source.start(0, offset);
-
-      this.currentMusic = {
-        source,
-        gain,
-        id: trackName,
-        startTime: this.context.currentTime - offset,
-        pausedAt: 0
-      };
-
-      source.onended = () => {
-        if (this.currentMusic?.source === source && this.currentMusic.pausedAt === 0) {
-          this.currentMusic = null;
-          this.notifyListeners();
-        }
-      };
-
-      this.notifyListeners();
+    if (this.currentMusic) {
+      this.fadeOutAndStop(this.currentMusic, fadeTime);
     }
+
+    const source = this.context.createBufferSource();
+    source.buffer = buffer;
+    source.loop = false;
+
+    const gain = this.context.createGain();
+    gain.gain.setValueAtTime(0, this.context.currentTime);
+    
+    source.connect(gain);
+    gain.connect(this.musicGain);
+
+    gain.gain.linearRampToValueAtTime(1, this.context.currentTime + fadeTime);
+
+    const offset = startPosition * buffer.duration;
+    source.start(0, offset);
+
+    this.currentMusic = {
+      source,
+      gain,
+      id: trackName,
+      startTime: this.context.currentTime - offset,
+      pausedAt: 0
+    };
+
+    source.onended = () => {
+      if (this.currentMusic?.source === source && this.currentMusic.pausedAt === 0) {
+        this.currentMusic = null;
+        this.notifyListeners();
+      }
+    };
+
+    this.notifyListeners();
+  }
 
   pauseMusic() {
     if (!this.currentMusic || !this.context) return;

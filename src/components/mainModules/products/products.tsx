@@ -5,7 +5,7 @@ const ProductsSection: React.FC = () => {
   return (
     <section id="products" className="secondarySection productsSection">
       <div className="title">
-        <h2>Collaboration</h2>
+        <h2>Services</h2>
         <span className="subtitle">working towards beauty</span>
       </div>
       <div className="products contentCard card">

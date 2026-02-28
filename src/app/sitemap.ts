@@ -7,7 +7,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: 'https://fortemirare.com',
       lastModified: new Date(),
-      priority: 1,
+    },
+    {
+      url: 'https://fortemirare.com#portfolio',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://fortemirare.com#about',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://fortemirare.com#products',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://fortemirare.com#contact',
+      lastModified: new Date(),
     },
   ]
 }

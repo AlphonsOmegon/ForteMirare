@@ -39,10 +39,10 @@ const MainPage: React.FC = () => {
               </div>
               <div className="centerNavbar">
                 <Eye/>
-                <img className="EyeImg" src={"/images/eyeEmpty.webp"} />
+                <img alt="Main Banner Eye" width="200" height="200" className="EyeImg" src={"/images/eyeEmpty.webp"} />
               </div>
               <div className="rightNavbar">
-                <Button onClick={() => scrollToSection('products')}>Collaboration</Button>
+                <Button onClick={() => scrollToSection('products')}>Services</Button>
                 <Button onClick={() => scrollToSection('contact')}>Contact</Button>
               </div>
             </nav>
