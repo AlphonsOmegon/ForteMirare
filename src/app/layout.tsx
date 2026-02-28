@@ -4,6 +4,7 @@ import "@mantine/core/styles.css";
 import "../styles/globals.scss";
 import "../styles/mainPage/mainPage.scss";
 import React from "react";
+import { cinzel, cinzelDecorative, raleway } from "./fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fortemirare.com'),
@@ -59,11 +60,7 @@ interface RootLayoutProps {
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+    <html lang="en" className={`${cinzelDecorative.variable} ${cinzel.variable} ${raleway.variable}`}>
       <body>
         <MantineProvider>
 

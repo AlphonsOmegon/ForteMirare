@@ -25,6 +25,20 @@ const ProductsSection: React.FC = () => {
           Available in orchestral, electronic, or heavily processed ambient styles, depending on your project’s direction.
         </div>
 
+
+        interactive scoring. indie game developers
+
+        indie game developer
+
+        soundtrack production
+
+        loopable music
+
+        interactive scoring
+
+        cinematic orchestration
+
+
       </div>
     </section>
   );

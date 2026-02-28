@@ -15,7 +15,6 @@
     background-repeat: repeat;
     background-position: center;
     background-size: contain;
-    
 
     .introSection {
         justify-content: center;
@@ -159,8 +158,8 @@
 
             .centerNavbar {
                 position: absolute;
-                width: 150px;
-                bottom: 100%;
+                width: 190px;
+                bottom: 125%;
             }
 
             .leftNavbar, .rightNavbar {
@@ -189,7 +188,7 @@
 
             .centerNavbar {
                 position: absolute;
-                width: 200px;
+                width: 260px;
                 bottom: 130%;
             }
         }
@@ -219,8 +218,8 @@
         nav.card {
             .centerNavbar {
                 position: absolute;
-                width: 200px;
-                bottom: 170%;
+                width: 250px;
+                bottom: 200%;
             }
         }
     }
