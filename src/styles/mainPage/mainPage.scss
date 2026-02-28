@@ -19,6 +19,7 @@
     .introSection {
         justify-content: center;
         height: 100vh;
+        min-height: 860px;
 
         .title {
             height: 20%;
@@ -224,4 +225,32 @@
         }
     }
   }
+}
+
+@media (max-height: 860px) {
+   .introSection {
+        justify-content: flex-start !important;
+
+        .title {
+        
+        }
+        
+        .mainMenu {
+            nav {
+
+                .centerNavbar {
+                    width: 180px !important; 
+                    bottom: 110% !important;
+                }
+
+            }
+        }
+
+        .introAnnotation {
+            transform: translateY(-30%);
+
+            p {
+            }
+        }
+    }
 }
