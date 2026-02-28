@@ -89,6 +89,10 @@ export class AudioManager {
     
     await this.resumeContext();
 
+    if (this.context.state !== 'running') {
+      await this.context.resume();
+    }
+
     const buffer = await this.loadAudioFile(trackName);
 
     if (this.currentMusic) {
