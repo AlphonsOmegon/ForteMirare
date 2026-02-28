@@ -33,7 +33,12 @@ export class AudioManager {
   }
 
   async initialize() {
-    if (this.initialized) return;
+    if (this.initialized) {
+      if (this.context?.state === 'suspended') {
+        await this.context.resume();
+      }
+      return;
+    }
     
     this.context = new AudioContext();
     

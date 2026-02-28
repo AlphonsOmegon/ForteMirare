@@ -63,7 +63,9 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
         };
     }, [isPlaying, songMetadata.id]);
 
-    const handlePlayPause = () => {
+    const handlePlayPause = async () => {
+        await audioManager.initialize();
+        
         const currentMusic = audioManager.getCurrentMusic();
         const isPaused = audioManager.isPaused();
         
@@ -77,8 +79,10 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
     };
 
     const indicatorRef = React.useRef<HTMLDivElement>(null);    
-    const handlePlayerClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handlePlayerClick = async (event: React.MouseEvent<HTMLDivElement>) => {
         if (!indicatorRef.current) return;
+        
+        await audioManager.initialize();
         
         const rect = indicatorRef.current.getBoundingClientRect();
         const clickX = event.clientX - rect.left;
