@@ -1,15 +1,17 @@
 import { audioConfig, SongMetadata } from "@/lib/audio/audioConfig";
-import { ActionIcon } from "@mantine/core";
+import { ActionIcon, Slider } from "@mantine/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPause, faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { audioManager } from "@/lib/audio/audioManager";
 
 interface SongCardProps {
     songMetadata : SongMetadata,
+    volume: number,
+    onVolumeChange: (value: number) => void,
 }
 
-const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
+const SongCard: React.FC<SongCardProps> = ({songMetadata, volume, onVolumeChange}) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
     const [position, setPosition] = useState(0);
@@ -93,6 +95,22 @@ const SongCard: React.FC<SongCardProps> = ({songMetadata}) => {
 
     return (
         <div className={"songCard " + (isPlaying && position < duration  ? "active" : "")}>
+            <div className="volumeControl">
+                <FontAwesomeIcon className="volumeButton min icon" icon={faVolumeXmark} />
+                <Slider
+                    label={(val) => `${val}%`}
+                    thumbLabel="Volume"
+                    value={volume}
+                    onChange={onVolumeChange}
+                    min={0}
+                    max={100}
+                    step={1}
+                    className="volumeRange"
+                    style={{ flex: 1 }}
+                />
+                <FontAwesomeIcon className="volumeButton max icon" icon={faVolumeHigh} />
+            </div>
+
             <h3 className="songTitle">{songMetadata.name}</h3>
             <p className="songSubtitle">{songMetadata.subtitle}</p>
 

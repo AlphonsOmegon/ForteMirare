@@ -1,0 +1,79 @@
+.productsSection .products.contentCard {
+  min-height: unset;
+}
+.productsSection .products.contentCard h3 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.productsSection .products.contentCard .upperText {
+  width: 100%;
+  height: 50%;
+  margin-bottom: 3rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.397);
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 0px 0px 5px rgba(251, 234, 211, 0.3137254902);
+  padding: 1rem 2rem;
+}
+.productsSection .products.contentCard .lowerText {
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.productsSection .products.contentCard .lowerText .column {
+  width: 30%;
+  padding: 1rem 2rem 1rem;
+  background-color: rgba(0, 0, 0, 0.397);
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 0px 0px 5px rgba(251, 234, 211, 0.3137254902);
+}
+.productsSection .products.contentCard .lowerText .column p {
+  color: var(--text-highlight);
+  font-family: var(--text-font);
+  font-size: 0.85rem;
+  letter-spacing: 0.2rem;
+  font-weight: 200;
+  text-align: justify;
+}
+
+@media (max-width: 1024px) {
+  .productsSection .products.contentCard .upperText {
+    padding: 2rem;
+  }
+  .productsSection .products.contentCard .upperText p {
+    font-family: var(--text-font);
+    color: var(--text-highlight);
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    font-weight: 200;
+    text-align: justify;
+  }
+  .productsSection .products.contentCard .lowerText {
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .productsSection .products.contentCard .lowerText .column {
+    padding: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  .productsSection .products.contentCard .lowerText .column p {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 576px) {
+  .productsSection .products.contentCard .upperText p {
+    font-size: 1.2rem;
+  }
+  .productsSection .products.contentCard .lowerText .column p {
+    font-size: 1.2rem;
+  }
+}/*# sourceMappingURL=products.css.map */

@@ -1,0 +1,455 @@
+.portfolioSection .portfolio.contentCard {
+  padding-left: 5rem;
+  padding-right: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.portfolioSection .portfolio.contentCard .featuredProduct {
+  text-align: justify;
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.5294117647) 8%, rgba(21, 19, 19, 0.3019607843) 49%, rgba(0, 0, 0, 0.431372549) 88%);
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+  box-shadow: 0 0 5px rgba(251, 234, 211, 0.3137254902);
+  margin-bottom: 4rem;
+}
+.portfolioSection .portfolio.contentCard .featuredProduct .featuredProductVideoContainer {
+  width: 30%;
+  aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 5px rgba(251, 234, 211, 0.3137254902);
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+}
+.portfolioSection .portfolio.contentCard .featuredProduct .featuredProductDescription {
+  width: 70%;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  position: relative;
+  width: 100%;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard {
+  background-color: rgba(0, 0, 0, 0.397);
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 0px 0px 5px rgba(251, 234, 211, 0.3137254902);
+  transition: all 0.5s ease;
+  position: relative;
+  padding-bottom: 7rem;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  pointer-events: none;
+  z-index: 0;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard > * {
+  position: relative;
+  z-index: 1;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard:hover, .portfolioSection .portfolio.contentCard .songCardWrapper .songCard.active {
+  transform: translateY(-0.2rem);
+  box-shadow: 0px 0px 10px #fff3e3;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard:hover::before, .portfolioSection .portfolio.contentCard .songCardWrapper .songCard.active::before {
+  opacity: 1;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard:hover .volumeControl {
+  opacity: 1;
+  pointer-events: auto;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl {
+  position: relative;
+  height: 3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  width: 60%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+@media (hover: none) {
+  .portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeButton {
+  position: absolute;
+  background: none;
+  color: var(--text-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeButton.min {
+  right: 105%;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeButton.max {
+  left: 105%;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeRange {
+  width: 100%;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeRange .mantine-Slider-track {
+  height: 2px;
+  background-color: var(--text-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeRange .mantine-Slider-track::before {
+  background-color: var(--text-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeRange .mantine-Slider-bar {
+  background-color: var(--color-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .volumeControl .volumeRange .mantine-Slider-thumb {
+  height: 5px;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .songTitle {
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  height: 3.2rem;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .songSubtitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.3rem;
+  padding-bottom: 1rem;
+  height: 3.2rem;
+  text-align: center;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .songImg {
+  margin: 1.4rem 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12rem;
+  height: 12rem;
+  position: relative;
+  overflow: visible;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .songImg img.thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 65%;
+  border-radius: 50%;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .songImg img.imgFrame {
+  z-index: 1;
+  width: 100%;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .keywords {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 1.7rem;
+  margin-bottom: 0.4rem;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .keywords span {
+  margin: 0 0.7rem;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  align-content: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: 5rem;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerButton {
+  border-radius: 50%;
+  background-color: var(--text-primary);
+  color: var(--color-primary);
+  width: 1px;
+  margin-top: 0.2rem;
+  position: relative;
+  transform: scale(1.4);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerButton span {
+  width: 10px;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerButton span svg.icon {
+  color: var(--color-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable {
+  margin: 1rem 0;
+  padding: 5px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator {
+  width: calc(100% - 20px);
+  position: relative;
+  height: 3px;
+  background: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator .progressBar {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: var(--color-primary);
+  transition: width 0.01s linear;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator .startPoint {
+  background: var(--text-primary);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease;
+  transform: translateX(-100%);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator .startPoint.active {
+  background: var(--color-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator .startPoint span {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-size: 1rem;
+  pointer-events: none;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator .endPoint {
+  background: var(--text-primary);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator .endPoint.active {
+  background: var(--color-primary);
+}
+.portfolioSection .portfolio.contentCard .songCardWrapper .songCard .player .playerClickable .playerIndicator .endPoint span {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  font-size: 1rem;
+  pointer-events: none;
+}
+.portfolioSection .youtubeContent.contentCard {
+  padding: 2.8rem 5rem;
+  min-height: 0;
+  padding-bottom: 1rem;
+}
+.portfolioSection .youtubeContent.contentCard .finalist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+.portfolioSection .youtubeContent.contentCard .finalist .finalistSubtitleContainer {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.portfolioSection .youtubeContent.contentCard .finalist .finalistSubtitleContainer .finalistSubtitle {
+  font-size: 1.2rem;
+  letter-spacing: 0.4rem;
+  padding: 0 5rem;
+}
+.portfolioSection .youtubeContent.contentCard .finalist .finalistSubtitleContainer .citation {
+  margin-top: 0.5rem;
+  max-width: 40%;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+.portfolioSection .youtubeContent.contentCard .finalist .finalistYoutubeContainer {
+  width: 80%;
+  aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 5px rgba(251, 234, 211, 0.3137254902);
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+}
+.portfolioSection .youtubeContent.contentCard .finalist .finalistYoutubeContainer .finalistYoutube {
+  width: 100%;
+  height: 100%;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeAccordion {
+  width: 100%;
+  background: transparent;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeAccordion .mantine-Accordion-item {
+  border: none;
+  background: transparent;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeAccordion .mantine-Accordion-control {
+  display: none;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeAccordion .mantine-Accordion-panel {
+  padding: 0;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeAccordion .mantine-Accordion-content {
+  padding: 0;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeGrid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 3rem;
+  margin-bottom: 2rem;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeGrid .cell {
+  width: 30%;
+  aspect-ratio: 16/9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
+  box-shadow: 0px 0px 5px rgba(251, 234, 211, 0.3137254902);
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeGrid .cell .wrapper {
+  width: 200%;
+  min-width: 200%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.portfolioSection .youtubeContent.contentCard .youtubeGrid .cell .wrapper .youtubeFrame {
+  width: 100%;
+  transform: scale(0.49);
+  aspect-ratio: 16/9;
+  height: auto;
+  display: flex;
+  margin: -1%;
+}
+.portfolioSection .youtubeContent.contentCard .loadMore {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 3rem;
+  background: linear-gradient(257deg, rgba(0, 0, 0, 0.53) 8%, rgba(92, 92, 92, 0.3) 49%, rgba(0, 0, 0, 0.43) 88%);
+  box-shadow: 0px 0px 5px rgba(251, 234, 211, 0.3137254902);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+.portfolioSection .youtubeContent.contentCard .loadMore:hover {
+  box-shadow: 0px 0px 7px #fff3e3;
+}
+
+@media (max-width: 1024px) {
+  .portfolioSection .portfolio.contentCard .songCardWrapper {
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    justify-content: center;
+  }
+  .portfolioSection .portfolio.contentCard .songCardWrapper .songCard {
+    width: 45%;
+  }
+  .portfolioSection .youtubeContent.contentCard .youtubeGrid {
+    row-gap: 2rem;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    justify-content: center;
+  }
+  .portfolioSection .youtubeContent.contentCard .youtubeGrid .cell {
+    width: 45%;
+  }
+}
+@media (max-width: 1024px) {
+  .portfolioSection .portfolio.contentCard {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .portfolioSection .portfolio.contentCard .youtubeContent {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+}
+@media (max-width: 576px) {
+  .portfolioSection .portfolio.contentCard .songCardWrapper {
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    justify-content: center;
+  }
+  .portfolioSection .portfolio.contentCard .songCardWrapper .songCard {
+    margin: 0;
+    width: 100%;
+  }
+  .portfolioSection .youtubeContent.contentCard .youtubeGrid {
+    row-gap: 2rem;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    justify-content: center;
+  }
+  .portfolioSection .youtubeContent.contentCard .youtubeGrid .cell {
+    width: 90%;
+  }
+}/*# sourceMappingURL=portfolio.css.map */

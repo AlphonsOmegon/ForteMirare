@@ -10,52 +10,233 @@
         flex-direction: column;
         position: relative;
 
-        .volumeControl {
-            position: absolute;
-            height: 3rem;
-            top: 0%;
-            left: 50%;
-            transform: translateX(-50%);
+        .featuredProduct {
+            background: linear-gradient(257deg, #00000087 8%, #1513134d 49%, #0000006e 88%);
+            border-top-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
             display: flex;
-            align-items: center;
-            width: 20%;
+            flex-direction: column;
+            width: 100%;
+            padding: 2.5rem;
+            box-shadow: 0 0 5px #fbead350;
+            margin-bottom: 4rem;
 
-            .volumeButton {
-                position: absolute;
-                background: none;
-                color: var(--text-primary);
-                
-                &.min {
-                    right: 105%;
-                }
-
-                &.max {
-                    left: 105%;
-                }
-            }
-
-            .volumeRange {
+            .featuredProductTop {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 2.5rem;
                 width: 100%;
-                .mantine-Slider-track {
-                    height: 2px;
-                    background-color: var(--text-primary);
+                margin-bottom: 1.5rem;
 
-                    &::before {
-                        background-color: var(--text-primary);
+                .featuredProductVideoContainer {
+                    flex-shrink: 0;
+                    width: 35%;
+                    aspect-ratio: 16 / 9;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    box-shadow: 0px 0px 5px #fbead350;
+                    border-top-left-radius: 1rem;
+                    border-bottom-right-radius: 1rem;
+                    background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+
+                    .wrapper {
+                        width: 200%;
+                        min-width: 200%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .youtubeFrame {
+                            width: 100%;
+                            transform: scale(0.49);
+                            aspect-ratio: 16 / 9;
+                            height: auto;
+                            display: flex;
+                            margin: -1%;
+                        }
                     }
                 }
 
-                .mantine-Slider-bar {
-                    background-color: var(--color-primary);
-                }
+                .featuredProductIntro {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
 
-                .mantine-Slider-thumb {
-                    
-                    height: 5px;
-                    background-color: var(--color-primary);
-                    border-color: var(--color-primary);
+                    .featuredProductTitle {
+                        font-family: var(--title-font);
+                        font-size: 1.6rem;
+                        letter-spacing: 0.15rem;
+                        margin-bottom: 1rem;
+                    }
+
+                    .featuredProductLinksTitle {
+                        font-family: var(--text-font);
+                        font-size: 0.85rem;
+                        letter-spacing: 0.15rem;
+                        text-transform: uppercase;
+                        color: var(--text-primary);
+                        opacity: 0.7;
+                        margin-bottom: 0.6rem;
+                    }
+
+                    .featuredProductLinks {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 1rem;
+                        margin-bottom: 1.2rem;
+
+                        .productLink {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.6rem;
+                            padding: 0.6rem 1.3rem;
+                            border-top-left-radius: 1rem;
+                            border-bottom-right-radius: 1rem;
+                            background: linear-gradient(257deg,rgba(0, 0, 0, 0.53) 30%, rgba(43, 43, 43, 0.39) 53%, rgba(0, 0, 0, 0.43) 82%);
+                            box-shadow: 0px 0px 5px #fbead350;
+                            color: var(--text-primary);
+                            text-decoration: none;
+                            font-family: var(--text-font);
+                            font-size: 0.9rem;
+                            letter-spacing: 0.03rem;
+                            transition: all 0.3s ease;
+
+                            &:hover {
+                                color: var(--text-highlight);
+                                box-shadow: 0px 0px 10px #fff3e3;
+                                transform: translateY(-0.15rem);
+                            }
+
+                            &.pending {
+                                opacity: 0.6;
+                                cursor: default;
+
+                                &:hover {
+                                    color: var(--text-primary);
+                                    box-shadow: 0px 0px 5px #fbead350;
+                                    transform: none;
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
+
+            .featuredProductBody {
+                width: 100%;
+                margin-bottom: 1.5rem;
+
+                .featuredProductText {
+                    font-family: var(--text-font);
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    text-align: justify;
+
+                    .featuredProductInspiredBy {
+                        display: block;
+                        margin-top: 0.6rem;
+                        font-size: 0.85rem;
+                        font-style: italic;
+                        color: var(--text-primary);
+                        opacity: 0.8;
+                    }
+                }
+
+                .featuredProductFeatures {
+                    width: 100%;
+                    font-family: var(--text-font);
+                    font-size: 0.9rem;
+                    list-style: none;
+                    display: flex;
+                    flex-wrap: wrap;
+                    column-gap: 1.5rem;
+                    row-gap: 0.5rem;
+                    margin-top: 1.2rem;
+
+                    li {
+                        position: relative;
+                        padding-left: 1.1rem;
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            top: 0.5rem;
+                            width: 6px;
+                            height: 6px;
+                            background: var(--color-primary);
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+
+            .featuredProductContents {
+                width: 100%;
+                background: transparent;
+                margin-bottom: 1.5rem;
+
+                .mantine-Accordion-item {
+                    border: none;
+                    background: transparent;
+                    border-bottom: 1px solid rgba(204, 187, 164, 0.2);
+
+                    &:last-of-type {
+                        border-bottom: none;
+                    }
+                }
+
+                .mantine-Accordion-control {
+                    padding: 0.8rem 0;
+                    font-family: var(--text-font);
+                    font-size: 0.95rem;
+                    letter-spacing: 0.05rem;
+                    color: var(--text-primary);
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        background: transparent;
+                        color: var(--text-highlight);
+                    }
+                }
+
+                .mantine-Accordion-chevron {
+                    color: var(--text-primary);
+                }
+
+                .mantine-Accordion-panel {
+                    .mantine-Accordion-content {
+                        padding: 0 0 1rem 0;
+                        font-family: var(--text-font);
+                        font-size: 0.85rem;
+
+                        .sectionNote {
+                            font-style: italic;
+                            opacity: 0.8;
+                            margin-bottom: 0.6rem;
+                        }
+
+                        ul {
+                            list-style: none;
+                            display: flex;
+                            flex-wrap: wrap;
+                            column-gap: 1.2rem;
+                            row-gap: 0.4rem;
+
+                            li {
+                                opacity: 0.9;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         .songCardWrapper {
@@ -105,13 +286,74 @@
                 &:hover, &.active {
                     transform: translateY(-0.2rem);
                     box-shadow: 0px 0px 10px #fff3e3;
-                    
+
                     &::before {
                         opacity: 1;
                     }
                 }
+
+                &:hover {
+                    .volumeControl {
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+                }
+
                 
-                
+                .volumeControl {
+                    position: relative;
+                    height: 3rem;
+                    margin-bottom: 1rem;
+                    display: flex;
+                    align-items: center;
+                    width: 60%;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: opacity 0.4s ease;
+
+                    @media (hover: none) {
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+
+                    .volumeButton {
+                        position: absolute;
+                        background: none;
+                        color: var(--text-primary);
+
+                        &.min {
+                            right: 105%;
+                        }
+
+                        &.max {
+                            left: 105%;
+                        }
+                    }
+
+                    .volumeRange {
+                        width: 100%;
+                        .mantine-Slider-track {
+                            height: 2px;
+                            background-color: var(--text-primary);
+
+                            &::before {
+                                background-color: var(--text-primary);
+                            }
+                        }
+
+                        .mantine-Slider-bar {
+                            background-color: var(--color-primary);
+                        }
+
+                        .mantine-Slider-thumb {
+
+                            height: 5px;
+                            background-color: var(--color-primary);
+                            border-color: var(--color-primary);
+                        }
+                    }
+                }
+
                 .songTitle {
                     font-weight: bold;
                     font-size: 1.2rem;
@@ -176,7 +418,7 @@
                         margin: 0 0.7rem ;
                     }
                 }
-    
+
                 .player {
                     position: absolute;
                     bottom: 2rem;
@@ -436,6 +678,40 @@
 @media (max-width: 1024px) {
     .portfolioSection {
         .portfolio.contentCard {
+            .featuredProduct {
+                align-items: center;
+
+                .featuredProductTop {
+                    flex-direction: column;
+                    align-items: center;
+
+                    .featuredProductVideoContainer {
+                        width: 100%;
+                    }
+
+                    .featuredProductIntro {
+                        align-items: center;
+                        text-align: center;
+
+                        .featuredProductLinks {
+                            justify-content: center;
+                        }
+                    }
+                }
+
+                .featuredProductBody {
+                    text-align: center;
+
+                    .featuredProductText {
+                        text-align: center;
+                    }
+
+                    .featuredProductFeatures {
+                        justify-content: center;
+                    }
+                }
+            }
+
             .songCardWrapper {
 
                 flex-wrap: wrap;

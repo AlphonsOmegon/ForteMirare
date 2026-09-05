@@ -37,7 +37,7 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
       
-      <span className="subtitle">... or sent a raven</span>
+      <span className="subtitle">... or send a raven</span>
     </section>
   );
 };
